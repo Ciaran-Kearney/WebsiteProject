@@ -1,0 +1,80 @@
+---
+// Define work experience items
+const workExperiences = [
+  {
+    icon: '🔧',
+    title: 'Project Engineer',
+    company: 'Automatic Identification Systems',
+    period: 'July 2024 - Current',
+    responsibilities: [
+      'Print, Inspect, Apply Projects',
+      'Cobot Cell',
+      'Vision Systems',
+      'System Integration'
+    ]
+  },
+  {
+    icon: '🔊',
+    title: 'Senior Acoustic Consultant',
+    company: 'Allegro Acoustics',
+    period: 'August 2021 - February 2024',
+    responsibilities: [
+      'Environmental Noise Control Projects',
+      'Room Acoustics Projects',
+      'Occupational Noise Control Assessments',
+      'Sound Insulation Assessments'
+    ]
+  },
+  {
+    icon: '🏗️',
+    title: 'General Operative',
+    company: 'Wright Concrete Products',
+    period: 'February 2020 - September 2020',
+    responsibilities: [
+      'Hollowcore Production Management',
+      'Compressive Strength Testing'
+    ]
+  },
+  {
+    icon: '🔩',
+    title: 'Student Engineer',
+    company: 'Thermo King Galway',
+    period: 'January 2019 - September 2019',
+    responsibilities: [
+      'Manufacturing Process Development',
+      '3D printing',
+      'CAD support',
+      'New Product Development Team'
+    ]
+  }
+];
+---
+
+<section id="work" class="work-section">
+  <div class="container">
+    <h2 class="section-title">Work Experience</h2>
+    <p class="section-subtitle">My Professional Journey</p>
+
+    <div class="work-container">
+      {workExperiences.map(job => (
+        <div class="work-card">
+          <div class="work-icon">{job.icon}</div>
+          <div class="work-content">
+            <div class="work-header">
+              <div>
+                <h3>{job.title}</h3>
+                <h4>{job.company}</h4>
+              </div>
+              <span class="work-period">{job.period}</span>
+            </div>
+            <ul class="work-responsibilities">
+              {job.responsibilities.map(item => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

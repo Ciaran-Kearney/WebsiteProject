@@ -1,0 +1,65 @@
+---
+// Define projects data
+const projects = [
+  {
+    icon: '🏭',
+    title: 'Grange Backup Power Plant',
+    description: 'Environmental noise planning application and assessment for a 96MW backup power plant project.',
+    tags: ['Environmental Noise', 'Planning Application', 'Assessment']
+  },
+  {
+    icon: '🖥️',
+    title: 'BT Ireland Data Centre',
+    description: 'Conducted environmental noise planning assessment for BT Ireland Data Centre in Blanchardstown.',
+    tags: ['Data Centre', 'Noise Assessment', 'Planning']
+  },
+  {
+    icon: '☀️',
+    title: 'Friarstown Solar Farm',
+    description: 'Environmental noise assessment for a 50MW Solar Farm development project.',
+    tags: ['Solar Farm', 'Renewable Energy', 'Environmental Assessment']
+  },
+  {
+    icon: '🏗️',
+    title: 'Merck 2.0 Manufacturing Facility',
+    description: 'Noise assessment for a €150 million expansion of the Merck manufacturing facility.',
+    tags: ['Manufacturing', 'Expansion Project', 'Industrial Noise']
+  },
+  {
+    icon: '🏢',
+    title: 'Irish Life Block 3',
+    description: 'Room acoustics design for a major redevelopment of the Irish Life offices on Abbey Street.',
+    tags: ['Room Acoustics', 'Office Design', 'Redevelopment']
+  },
+  {
+    icon: '👷',
+    title: 'Occupational Noise Assessments',
+    description: 'Conducted occupational noise control assessments for companies including Airforce H&V and Keltech.',
+    tags: ['Occupational Noise', 'Workplace Safety', 'Assessments']
+  }
+];
+---
+
+<section id="projects" class="projects-section">
+  <div class="container">
+    <h2 class="section-title">Projects</h2>
+    <p class="section-subtitle">Professional Projects</p>
+
+    <div class="projects-grid">
+      {projects.map(project => (
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-icon">{project.icon}</div>
+            <h3>{project.title}</h3>
+          </div>
+          <p class="project-description">{project.description}</p>
+          <div class="project-tags">
+            {project.tags.map(tag => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

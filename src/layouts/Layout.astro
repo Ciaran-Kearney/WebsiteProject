@@ -1,0 +1,237 @@
+---
+// Define props interface
+interface Props {
+  title: string;
+  description?: string;
+}
+
+// Destructure props with defaults
+const {
+  title,
+  description = "Personal portfolio website for Ciarán Kearney, Mechanical Engineer"
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <!-- Import global styles -->
+    <link rel="stylesheet" href="/styles/global.css" />
+  </head>
+  <body>
+    <div class="dots-background" id="dots-background"></div>
+
+    <header>
+      <div class="container">
+        <nav>
+          <div class="logo">
+            <a href="#"><span>&lt;</span> Ciarán Kearney <span>&gt;</span></a>
+          </div>
+          <div class="menu-toggle" id="menu-toggle">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+          </div>
+          <ul class="nav-links" id="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-links">
+            <a href="mailto:ciarankearney2013@hotmail.com">ciarankearney2013@hotmail.com</a> |
+            <a href="tel:+353872363416">+353 87 236 3416</a> |
+            <a href="https://www.linkedin.com/in/ciar%C3%A1n-kearney/" target="_blank">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Dot background animation class
+      class Dot {
+        x: number;
+        y: number;
+        size: number;
+        opacity: number;
+        fadeSpeed: number;
+        fadeDirection: 'in' | 'out';
+        maxOpacity: number;
+        element: HTMLDivElement;
+
+        constructor(container: HTMLElement) {
+          // Generate random properties
+          this.x = Math.random() * window.innerWidth;
+          this.y = Math.random() * window.innerHeight;
+          this.size = Math.random() * 4 + 1; // Size between 1-5px
+          this.opacity = 0;
+          this.fadeSpeed = Math.random() * 0.01 + 0.003; // Random fade speed
+          this.fadeDirection = 'in';
+          this.maxOpacity = Math.random() * 0.3 + 0.1; // Max opacity between 0.1-0.4
+
+          // Create the dot element
+          this.element = document.createElement('div');
+          this.element.className = 'dot';
+          this.element.style.position = 'absolute';
+          this.element.style.left = `${this.x}px`;
+          this.element.style.top = `${this.y}px`;
+          this.element.style.width = `${this.size}px`;
+          this.element.style.height = `${this.size}px`;
+          this.element.style.borderRadius = '50%';
+          this.element.style.background = '#fff';
+          this.element.style.opacity = this.opacity.toString();
+          this.element.style.pointerEvents = 'none';
+
+          // Add to container
+          container.appendChild(this.element);
+        }
+
+        update() {
+          // Fade in or out
+          if (this.fadeDirection === 'in') {
+            this.opacity += this.fadeSpeed;
+            if (this.opacity >= this.maxOpacity) {
+              this.opacity = this.maxOpacity;
+              this.fadeDirection = 'out';
+            }
+          } else {
+            this.opacity -= this.fadeSpeed;
+            if (this.opacity <= 0) {
+              this.opacity = 0;
+              this.fadeDirection = 'in';
+
+              // Reposition the dot when it's fully faded out
+              this.x = Math.random() * window.innerWidth;
+              this.y = Math.random() * window.innerHeight;
+              this.element.style.left = `${this.x}px`;
+              this.element.style.top = `${this.y}px`;
+            }
+          }
+
+          // Update the element
+          this.element.style.opacity = this.opacity.toString();
+        }
+      }
+
+      // Initialize the dots background
+      function initDots() {
+        let container = document.getElementById('dots-background');
+        if (!container) {
+          // Create the container if it doesn't exist
+          container = document.createElement('div');
+          container.id = 'dots-background';
+          container.style.position = 'fixed';
+          container.style.left = '0';
+          container.style.top = '0';
+          container.style.width = '100vw';
+          container.style.height = '100vh';
+          container.style.zIndex = '-1';
+          container.style.overflow = 'hidden';
+          container.style.pointerEvents = 'none';
+          container.style.background = 'transparent';
+          document.body.appendChild(container);
+        }
+
+        const dots: Dot[] = [];
+        const dotCount = Math.min(window.innerWidth / 5, 200); // Responsive dot count
+
+        // Create the dots
+        for (let i = 0; i < dotCount; i++) {
+          dots.push(new Dot(container));
+        }
+
+        // Animation loop
+        function animate() {
+          dots.forEach(dot => dot.update());
+          requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+          // Clear all dots
+          container!.innerHTML = '';
+          dots.length = 0;
+
+          // Recreate dots based on new window size
+          const newDotCount = Math.min(window.innerWidth / 5, 200);
+          for (let i = 0; i < newDotCount; i++) {
+            dots.push(new Dot(container!));
+          }
+        });
+      }
+
+      // Initialize the mobile menu toggle
+      function initMobileMenu() {
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+
+        if (menuToggle && navLinks) {
+          menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+          });
+
+          // Close menu when a link is clicked
+          const links = navLinks.getElementsByTagName('a');
+          for (let i = 0; i < links.length; i++) {
+            links[i].addEventListener('click', () => {
+              navLinks.classList.remove('active');
+            });
+          }
+        }
+      }
+
+      // Animate sections on scroll
+      function initScrollAnimations() {
+        const sections = document.querySelectorAll('section');
+
+        const observerOptions = {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('section-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        sections.forEach(section => {
+          section.classList.add('section-animate');
+          observer.observe(section);
+        });
+      }
+
+      // Run initialization when the DOM is loaded
+      document.addEventListener('DOMContentLoaded', () => {
+        initDots();
+        initMobileMenu();
+        initScrollAnimations();
+      });
+    </script>
+  </body>
+</html>
