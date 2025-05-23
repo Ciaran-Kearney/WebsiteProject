@@ -1,9 +1,11 @@
-[images]
-  remote_images = ["https://source.unsplash.com/.*", "https://images.unsplash.com/.*", "https://ext.same-assets.com/.*", "https://ugc.same-assets.com/.*"]
-
 [build]
   command = "bun run build"
   publish = "dist"
+
+[dev]
+  command = "bun run dev"
+  port = 4321
+  framework = "astro"
 
 [[redirects]]
   from = "/*"
