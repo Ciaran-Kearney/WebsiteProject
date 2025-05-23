@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 
 export default defineConfig({
   // Set this to your GitHub repository name
-  base: '/Ciaran-Kearney/WebsiteProject/',
+  base: '/WebsiteProject/',
   // Other Astro configuration options
   outDir: './dist',
   build: {
