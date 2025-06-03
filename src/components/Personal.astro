@@ -1,0 +1,326 @@
+---
+// Personal component
+---
+
+<section id="personal" class="personal-section">
+  <div class="container">
+    <h2 class="section-title">Personal</h2>
+    <p class="personal-intro">
+      Beyond the professional realm, I'm an avid rock climber, constantly pushing my limits and seeking new challenges.
+      Each climb is a unique puzzle that demands both physical prowess and mental fortitude.
+    </p>
+
+    <div class="achievements-grid">
+      <div class="achievement-card">
+        <div class="achievement-header">
+          <div class="achievement-icon">🏔️</div>
+          <h3>Indoor Climbing Achievement</h3>
+          <button class="expand-btn" aria-label="Toggle details">
+            <span class="plus-icon"></span>
+          </button>
+        </div>
+        <div class="achievement-content">
+          <p class="achievement-description">
+            Successfully climbed a challenging 7c grade route indoors, demonstrating technical skill and determination
+            in controlled climbing environments.
+          </p>
+          <div class="media-preview" data-media="/assets/personal/indoor-7c.jpg" data-type="image">
+            <div class="media-placeholder">
+              <span>Click to view 📸</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="achievement-card">
+        <div class="achievement-header">
+          <div class="achievement-icon">🗻</div>
+          <h3>Diga di Luzzone Dam</h3>
+          <button class="expand-btn" aria-label="Toggle details">
+            <span class="plus-icon"></span>
+          </button>
+        </div>
+        <div class="achievement-content">
+          <p class="achievement-description">
+            Conquered a 165m multipitch route on the impressive Diga di Luzzone dam. This unique climb combines
+            the thrill of height with the remarkable engineering of the dam structure.
+          </p>
+          <div class="media-preview" data-media="/assets/personal/luzzone-dam.jpg" data-type="image">
+            <div class="media-placeholder">
+              <span>Click to view 📸</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="achievement-card">
+        <div class="achievement-header">
+          <div class="achievement-icon">⛰️</div>
+          <h3>El Chorro Blue Route</h3>
+          <button class="expand-btn" aria-label="Toggle details">
+            <span class="plus-icon"></span>
+          </button>
+        </div>
+        <div class="achievement-content">
+          <p class="achievement-description">
+            Completed the legendary 310m Blue Route multipitch in El Chorro, Spain. This extensive climb offers
+            breathtaking views and requires sustained focus throughout its numerous pitches.
+          </p>
+          <div class="media-preview" data-media="/assets/personal/el-chorro.jpg" data-type="image">
+            <div class="media-placeholder">
+              <span>Click to view 📸</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .personal-section {
+    padding: 4rem 0;
+  }
+
+  .personal-intro {
+    max-width: 800px;
+    margin: 2rem auto;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+
+  .achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .achievement-card {
+    position: relative;
+    background: linear-gradient(
+      135deg,
+      rgba(10, 25, 41, 0.85) 0%,
+      rgba(6, 19, 32, 0.8) 100%
+    );
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    height: 85px; /* Initial height when collapsed */
+  }
+
+  .achievement-card.expanded {
+    height: 460px; /* Increased height when expanded */
+  }
+
+  .achievement-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--primary-bg);
+    border-radius: 12px;
+    z-index: -1;
+  }
+
+  .achievement-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    gap: 1rem;
+    border-bottom: 1px solid var(--border-subtle);
+    background: inherit;
+    z-index: 3;
+  }
+
+  .achievement-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 180, 216, 0.2) 0%,
+      rgba(0, 180, 216, 0.1) 100%
+    );
+    border: 1px solid rgba(0, 180, 216, 0.25);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .achievement-header h3 {
+    flex: 1;
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--text-bright);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .expand-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .plus-icon {
+    width: 20px;
+    height: 20px;
+    position: relative;
+  }
+
+  .plus-icon::before,
+  .plus-icon::after {
+    content: '';
+    position: absolute;
+    background-color: var(--accent-primary);
+    transition: all 0.3s ease;
+  }
+
+  .plus-icon::before {
+    width: 2px;
+    height: 20px;
+    left: 9px;
+    top: 0;
+  }
+
+  .plus-icon::after {
+    width: 20px;
+    height: 2px;
+    left: 0;
+    top: 9px;
+  }
+
+  .achievement-content {
+    position: absolute;
+    top: 85px; /* Height of header */
+    left: 0;
+    right: 0;
+    padding: 0;
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .achievement-card.expanded .achievement-content {
+    height: 375px; /* Increased content height */
+    opacity: 1;
+    padding: 1.5rem;
+  }
+
+  .achievement-card.expanded .expand-btn {
+    transform: rotate(45deg);
+  }
+
+  .achievement-description {
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+
+  .media-preview {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    height: 240px; /* Increased height for media container */
+  }
+
+  .media-placeholder {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+  }
+
+  .media-preview img,
+  .media-preview video {
+    width: 100%;
+    height: 240px; /* Increased height for media */
+    object-fit: cover;
+    display: none;
+  }
+
+  .media-preview.loaded img,
+  .media-preview.loaded video {
+    display: block;
+  }
+
+  .media-preview.loaded .media-placeholder {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .achievements-grid {
+      grid-template-columns: 1fr;
+      padding: 0 1rem;
+    }
+
+    .achievement-card {
+      height: 85px;
+    }
+
+    .achievement-card.expanded {
+      height: 460px;
+    }
+
+    .achievement-description {
+      font-size: 0.9rem;
+    }
+  }
+</style>
+
+<script>
+  // Handle card expansion
+  document.querySelectorAll('.achievement-card').forEach(card => {
+    const btn = card.querySelector('.expand-btn');
+    btn.addEventListener('click', () => {
+      card.classList.toggle('expanded');
+    });
+  });
+
+  // Handle media loading
+  document.querySelectorAll('.media-preview').forEach(preview => {
+    preview.addEventListener('click', () => {
+      if (preview.classList.contains('loaded')) return;
+
+      const mediaUrl = preview.dataset.media;
+      const mediaType = preview.dataset.type;
+
+      if (mediaType === 'image') {
+        const img = new Image();
+        img.src = mediaUrl;
+        img.alt = 'Achievement photo';
+        img.onload = () => {
+          preview.appendChild(img);
+          preview.classList.add('loaded');
+        };
+      } else if (mediaType === 'video') {
+        const video = document.createElement('video');
+        video.src = mediaUrl;
+        video.controls = true;
+        video.onloadeddata = () => {
+          preview.appendChild(video);
+          preview.classList.add('loaded');
+        };
+      }
+    });
+  });
+</script> 
