@@ -6,65 +6,54 @@
 }
 
 :root {
-  /* Base font size - 1rem = 15px */
   font-size: 15px;
 
-:root {
-  /* Base font size - 1rem = 15px */
-  font-size: 15px;
+  /* Slightly brighter theme colors */
+  --primary-bg: #10243D;        /* Brighter navy */
+  --primary-bg-darker: #0B1C30; /* Brighter darker navy */
+  --primary-bg-darkest: #081522;/* Brighter darkest navy */
 
-  /* Theme Colors - Dark Mode & Electric Blue - Brightened */
-  --primary-bg: #0C1E33;        /* Slightly lighter navy */
-  --primary-bg-darker: #081728; /* Slightly lighter darker navy */
-  --primary-bg-darkest: #05111D;/* Slightly lighter darkest navy */
-  
-  --accent-primary: #00C8F0;    /* Brighter electric blue */
-  --accent-primary-light: #4CD6F0; /* Brighter light electric blue */
-  --accent-secondary: #98E8F7;  /* Brighter sky blue */
-  --accent-secondary-light: #B5F0FC; /* Brighter light sky blue */
-  
-  --text-muted: #7084A3;       /* Brighter cool grey */
-  --text-muted-dark: #526580;  /* Brighter dark cool grey */
-  --text-primary: #EBF0F6;     /* Brighter light grey */
-  --text-bright: #FFFFFF;      /* Pure white */
+  --accent-primary: #1ED6F5;    /* Slightly brighter electric blue */
+  --accent-primary-light: #6DE3F7; /* Slightly brighter light electric blue */
+  --accent-secondary: #B3F0FB;  /* Slightly brighter sky blue */
+  --accent-secondary-light: #CCF6FD; /* Slightly brighter light sky blue */
+
+  --text-muted: #7A90AE;        /* Slightly brighter muted text */
+  --text-muted-dark: #60748E;   /* Slightly brighter dark muted text */
+  --text-primary: #F0F5FA;      /* Slightly brighter light grey */
+  --text-bright: #FFFFFF;       /* Already max brightness */
 
   /* Component Colors */
   --background: var(--primary-bg);
   --background-darker: var(--primary-bg-darker);
   --background-darkest: var(--primary-bg-darkest);
-  
-  /* Card and container backgrounds with opacity */
-  --card-bg: rgba(10, 25, 41, 0.6);
-  --card-bg-hover: rgba(6, 19, 32, 0.75);
-  --header-bg: rgba(10, 25, 41, 0.8);
-  --mobile-nav-bg: rgba(10, 25, 41, 0.95);
-  
-  /* Enhanced component-specific colors */
-  --skill-icon-bg: rgba(0, 180, 216, 0.15);  /* Electric blue */
+
+  --card-bg: rgba(14, 30, 50, 0.6);
+  --card-bg-hover: rgba(10, 25, 41, 0.75);
+  --header-bg: rgba(14, 30, 50, 0.8);
+  --mobile-nav-bg: rgba(14, 30, 50, 0.95);
+
+  --skill-icon-bg: rgba(30, 214, 245, 0.15);
   --skill-icon-border: var(--accent-primary);
-  --skill-hover-bg: rgba(0, 180, 216, 0.25); /* Stronger blue */
-  --tag-bg: rgba(144, 224, 239, 0.1);       /* Sky blue */
-  --tag-hover-bg: rgba(144, 224, 239, 0.2); /* Stronger sky blue */
-  --card-glow: rgba(0, 180, 216, 0.2);      /* Blue glow */
-  --card-glow-hover: rgba(0, 180, 216, 0.3); /* Stronger blue glow */
-  
-  /* Gradients */
-  --card-gradient-start: rgba(10, 25, 41, 0.6);
-  --card-gradient-end: rgba(6, 19, 32, 0.8);
-  
-  /* Border colors */
-  --border-subtle: rgba(0, 180, 216, 0.2);
-  
-  /* Text colors */
+  --skill-hover-bg: rgba(30, 214, 245, 0.25);
+  --tag-bg: rgba(179, 240, 251, 0.1);
+  --tag-hover-bg: rgba(179, 240, 251, 0.2);
+  --card-glow: rgba(30, 214, 245, 0.2);
+  --card-glow-hover: rgba(30, 214, 245, 0.3);
+
+  --card-gradient-start: rgba(14, 30, 50, 0.6);
+  --card-gradient-end: rgba(10, 25, 41, 0.8);
+
+  --border-subtle: rgba(30, 214, 245, 0.2);
+
   --text-color: var(--text-primary);
   --heading-color: var(--text-bright);
   --text-muted-color: var(--text-muted);
-  
-  /* Button colors */
+
   --button-primary: var(--accent-primary);
   --button-primary-hover: var(--accent-primary-light);
   --button-secondary-border: var(--accent-primary);
-  --button-secondary-hover: rgba(0, 180, 216, 0.15);
+  --button-secondary-hover: rgba(30, 214, 245, 0.15);
 }
 
 body {
