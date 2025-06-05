@@ -9,20 +9,24 @@
   /* Base font size - 1rem = 15px */
   font-size: 15px;
 
-  /* Theme Colors - Dark Mode & Electric Blue */
-  --primary-bg: #0A1929;        /* Deep navy */
-  --primary-bg-darker: #061320; /* Darker navy */
-  --primary-bg-darkest: #040D16;/* Darkest navy */
+:root {
+  /* Base font size - 1rem = 15px */
+  font-size: 15px;
+
+  /* Theme Colors - Dark Mode & Electric Blue - Brightened */
+  --primary-bg: #0C1E33;        /* Slightly lighter navy */
+  --primary-bg-darker: #081728; /* Slightly lighter darker navy */
+  --primary-bg-darkest: #05111D;/* Slightly lighter darkest navy */
   
-  --accent-primary: #00B4D8;    /* Electric blue */
-  --accent-primary-light: #48CAE4; /* Light electric blue */
-  --accent-secondary: #90E0EF;  /* Sky blue */
-  --accent-secondary-light: #ADE8F4; /* Light sky blue */
+  --accent-primary: #00C8F0;    /* Brighter electric blue */
+  --accent-primary-light: #4CD6F0; /* Brighter light electric blue */
+  --accent-secondary: #98E8F7;  /* Brighter sky blue */
+  --accent-secondary-light: #B5F0FC; /* Brighter light sky blue */
   
-  --text-muted: #64748B;       /* Cool grey */
-  --text-muted-dark: #475569;  /* Dark cool grey */
-  --text-primary: #E2E8F0;     /* Light grey */
-  --text-bright: #F8FAFC;      /* Bright grey */
+  --text-muted: #7084A3;       /* Brighter cool grey */
+  --text-muted-dark: #526580;  /* Brighter dark cool grey */
+  --text-primary: #EBF0F6;     /* Brighter light grey */
+  --text-bright: #FFFFFF;      /* Pure white */
 
   /* Component Colors */
   --background: var(--primary-bg);
