@@ -110,6 +110,7 @@
     overflow: hidden;
     transition: all 0.3s ease;
     height: 85px; /* Initial height when collapsed */
+    cursor: pointer; /* Added cursor pointer */
   }
 
   .achievement-card.expanded {
@@ -291,14 +292,31 @@
   // Handle card expansion
   document.querySelectorAll('.achievement-card').forEach(card => {
     const btn = card.querySelector('.expand-btn');
-    btn.addEventListener('click', () => {
-      card.classList.toggle('expanded');
+    
+    // Make the entire card clickable
+    card.addEventListener('click', (e) => {
+      // Don't trigger if clicking on media preview or the button
+      if (e.target.closest('.media-preview') || e.target.closest('.expand-btn')) return;
+      toggleCard(card, btn);
     });
+
+    // Handle button click separately
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleCard(card, btn);
+    });
+
+    // Helper function to toggle card state
+    function toggleCard(card, btn) {
+      card.classList.toggle('expanded');
+      btn.style.transform = card.classList.contains('expanded') ? 'rotate(45deg)' : 'rotate(0deg)';
+    }
   });
 
   // Handle media loading
   document.querySelectorAll('.media-preview').forEach(preview => {
-    preview.addEventListener('click', () => {
+    preview.addEventListener('click', (e) => {
+      e.stopPropagation(); // Prevent card expansion when clicking media
       if (preview.classList.contains('loaded')) return;
 
       const mediaUrl = preview.dataset.media;
