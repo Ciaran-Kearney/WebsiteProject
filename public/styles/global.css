@@ -8,43 +8,45 @@
 :root {
   font-size: 15px;
 
-  /* Slightly brighter theme colors */
-  --primary-bg: #10243D;        /* Brighter navy */
-  --primary-bg-darker: #0B1C30; /* Brighter darker navy */
-  --primary-bg-darkest: #081522;/* Brighter darkest navy */
+  /* Mid-brightness navy backgrounds */
+  --primary-bg: #132841;         /* Between #0C1E33 and #10243D */
+  --primary-bg-darker: #0D1F33;
+  --primary-bg-darkest: #091728;
 
-  --accent-primary: #1ED6F5;    /* Slightly brighter electric blue */
-  --accent-primary-light: #6DE3F7; /* Slightly brighter light electric blue */
-  --accent-secondary: #B3F0FB;  /* Slightly brighter sky blue */
-  --accent-secondary-light: #CCF6FD; /* Slightly brighter light sky blue */
+  /* Enhanced electric blue accents */
+  --accent-primary: #1AD2F5;     /* Midpoint between #00C8F0 and #1ED6F5 */
+  --accent-primary-light: #68E0F7; 
+  --accent-secondary: #ACEEF9;  
+  --accent-secondary-light: #D1F7FC;
 
-  --text-muted: #7A90AE;        /* Slightly brighter muted text */
-  --text-muted-dark: #60748E;   /* Slightly brighter dark muted text */
-  --text-primary: #F0F5FA;      /* Slightly brighter light grey */
-  --text-bright: #FFFFFF;       /* Already max brightness */
+  /* Brighter but cool-muted text */
+  --text-muted: #8095B1;
+  --text-muted-dark: #627992;
+  --text-primary: #F2F6FB;
+  --text-bright: #FFFFFF;
 
   /* Component Colors */
   --background: var(--primary-bg);
   --background-darker: var(--primary-bg-darker);
   --background-darkest: var(--primary-bg-darkest);
 
-  --card-bg: rgba(14, 30, 50, 0.6);
-  --card-bg-hover: rgba(10, 25, 41, 0.75);
-  --header-bg: rgba(14, 30, 50, 0.8);
-  --mobile-nav-bg: rgba(14, 30, 50, 0.95);
+  --card-bg: rgba(19, 40, 65, 0.65);
+  --card-bg-hover: rgba(13, 31, 51, 0.8);
+  --header-bg: rgba(19, 40, 65, 0.8);
+  --mobile-nav-bg: rgba(19, 40, 65, 0.95);
 
-  --skill-icon-bg: rgba(30, 214, 245, 0.15);
+  --skill-icon-bg: rgba(26, 210, 245, 0.2);
   --skill-icon-border: var(--accent-primary);
-  --skill-hover-bg: rgba(30, 214, 245, 0.25);
-  --tag-bg: rgba(179, 240, 251, 0.1);
-  --tag-hover-bg: rgba(179, 240, 251, 0.2);
-  --card-glow: rgba(30, 214, 245, 0.2);
-  --card-glow-hover: rgba(30, 214, 245, 0.3);
+  --skill-hover-bg: rgba(26, 210, 245, 0.3);
+  --tag-bg: rgba(172, 238, 249, 0.15);
+  --tag-hover-bg: rgba(172, 238, 249, 0.25);
+  --card-glow: rgba(26, 210, 245, 0.25);
+  --card-glow-hover: rgba(26, 210, 245, 0.35);
 
-  --card-gradient-start: rgba(14, 30, 50, 0.6);
-  --card-gradient-end: rgba(10, 25, 41, 0.8);
+  --card-gradient-start: rgba(19, 40, 65, 0.65);
+  --card-gradient-end: rgba(13, 31, 51, 0.8);
 
-  --border-subtle: rgba(30, 214, 245, 0.2);
+  --border-subtle: rgba(26, 210, 245, 0.25);
 
   --text-color: var(--text-primary);
   --heading-color: var(--text-bright);
@@ -53,7 +55,7 @@
   --button-primary: var(--accent-primary);
   --button-primary-hover: var(--accent-primary-light);
   --button-secondary-border: var(--accent-primary);
-  --button-secondary-hover: rgba(30, 214, 245, 0.15);
+  --button-secondary-hover: rgba(26, 210, 245, 0.2);
 }
 
 body {
