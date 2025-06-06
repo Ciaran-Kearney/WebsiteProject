@@ -6,8 +6,8 @@ export default defineConfig({
   // base: '/WebsiteProjectDesktop',
   
   // Local development settings:
-  site: 'http://localhost:4321',
-  base: '/WebsiteProjectDesktop',
+  site: 'https://ciaran-kearney.github.io',
+  base: '/WebsiteProject',
   
   // Other Astro configuration options
   outDir: './dist',
