@@ -301,32 +301,29 @@
       title: "Grange Backup Power Plant",
       description: "Environmental noise planning application and assessment for a 96MW backup power plant project.",
       details: `
-        <h3>Project Overview</h3>
-        <p>The Grange Backup Power Plant project involved comprehensive environmental noise assessment for a new 96MW facility. Key challenges included:</p>
+        <p>Led the environmental noise assessment for a significant backup power generation facility:</p>
         <ul>
-          <li>Detailed noise modeling of multiple generator units</li>
-          <li>Assessment of cumulative impact with existing infrastructure</li>
-          <li>Development of noise mitigation strategies</li>
-          <li>Stakeholder consultation and planning compliance</li>
+          <li>Conducted comprehensive noise modeling and impact assessment</li>
+          <li>Developed noise mitigation strategies</li>
+          <li>Prepared planning documentation</li>
+          <li>Liaised with local authorities and stakeholders</li>
         </ul>
-        <p>The project successfully achieved planning approval with innovative noise control solutions that balanced operational requirements with environmental protection.</p>
+        <p>Successfully secured planning permission with all noise-related conditions approved.</p>
       `,
-      tags: ["Environmental Noise", "Power Generation", "96MW Facility"],
-      image: import.meta.env.BASE_URL + "/assets/images/testimage.jpg"
+      tags: ["Environmental Noise", "Power Generation", "96MW Facility"]
     },
     bt: {
       title: "BT Ireland Data Centre",
       description: "Environmental noise planning assessment for BT Ireland Data Centre in Blanchardstown.",
       details: `
-        <h3>Project Overview</h3>
-        <p>The BT Ireland Data Centre project presented unique challenges in urban noise control:</p>
+        <p>Managed noise assessment for a major data centre development:</p>
         <ul>
-          <li>24/7 operational requirements in an urban setting</li>
-          <li>Complex HVAC and cooling system noise management</li>
-          <li>Integration with existing infrastructure</li>
-          <li>Detailed predictive noise modeling</li>
+          <li>Baseline noise monitoring</li>
+          <li>Predictive noise modeling</li>
+          <li>Equipment specification review</li>
+          <li>Mitigation design</li>
         </ul>
-        <p>Our solutions enabled continuous operation while maintaining compliance with strict urban noise limits.</p>
+        <p>Project achieved all environmental noise targets and planning requirements.</p>
       `,
       tags: ["Data Centre", "Environmental Assessment", "Planning"]
     },
@@ -334,15 +331,14 @@
       title: "Friarstown Solar Farm",
       description: "Environmental noise assessment for a 50MW solar farm development project.",
       details: `
-        <h3>Project Overview</h3>
-        <p>The Friarstown Solar Farm project focused on environmental noise considerations for a large-scale renewable energy facility:</p>
+        <p>Conducted environmental noise assessment for renewable energy project:</p>
         <ul>
-          <li>Assessment of inverter and transformer noise emissions</li>
-          <li>Evaluation of construction phase impacts</li>
-          <li>Development of noise control measures</li>
-          <li>Environmental Impact Assessment Report preparation</li>
+          <li>Background noise surveys</li>
+          <li>Construction noise assessment</li>
+          <li>Operational impact prediction</li>
+          <li>Planning documentation</li>
         </ul>
-        <p>The project successfully obtained planning permission, contributing to Ireland's renewable energy infrastructure.</p>
+        <p>Successfully demonstrated minimal noise impact for planning approval.</p>
       `,
       tags: ["Renewable Energy", "50MW Facility", "Environmental"]
     },
@@ -350,15 +346,14 @@
       title: "Merck 2.0 Manufacturing",
       description: "Comprehensive noise assessment for a €150 million expansion of the Merck manufacturing facility.",
       details: `
-        <h3>Project Overview</h3>
-        <p>The Merck 2.0 Manufacturing expansion project required detailed acoustic analysis and planning:</p>
+        <p>Led acoustic design for major pharmaceutical facility expansion:</p>
         <ul>
-          <li>Complex industrial noise source assessment</li>
-          <li>Phased construction noise management</li>
-          <li>Integration with existing facility operations</li>
-          <li>Development of noise control specifications</li>
+          <li>Environmental noise impact assessment</li>
+          <li>Equipment noise specification</li>
+          <li>Building envelope design</li>
+          <li>Construction noise management</li>
         </ul>
-        <p>Our acoustic design enabled the facility expansion while maintaining environmental compliance and operational efficiency.</p>
+        <p>Project delivered on time with all acoustic requirements met.</p>
       `,
       tags: ["Manufacturing", "Large Scale", "Industrial"]
     },
@@ -366,15 +361,14 @@
       title: "Project Dargle Schools",
       description: "Environmental noise assessment for the Project Dargle Schools Bundle development.",
       details: `
-        <h3>Project Overview</h3>
-        <p>The Project Dargle Schools Bundle involved acoustic considerations for educational facilities:</p>
+        <p>Managed acoustic assessment for multiple school developments:</p>
         <ul>
-          <li>Traffic noise impact assessment</li>
-          <li>Construction phase noise management</li>
-          <li>Building envelope sound insulation design</li>
-          <li>External play area acoustic planning</li>
+          <li>Construction noise impact assessment</li>
+          <li>Traffic noise evaluation</li>
+          <li>Building acoustics design</li>
+          <li>Planning documentation</li>
         </ul>
-        <p>The project delivered optimal acoustic environments for learning while managing environmental noise impacts.</p>
+        <p>Successfully achieved planning permission for all school sites.</p>
       `,
       tags: ["Education", "Construction", "Planning"]
     },
@@ -382,10 +376,9 @@
       title: "Irish Life Block 3",
       description: "Room acoustics design for major redevelopment of Irish Life offices on Abbey Street.",
       details: `
-        <h3>Project Overview</h3>
-        <p>The Irish Life Block 3 project focused on creating optimal acoustic environments for modern office spaces:</p>
+        <p>Delivered acoustic design for office redevelopment:</p>
         <ul>
-          <li>Open plan office acoustic design</li>
+          <li>Room acoustic modeling</li>
           <li>Meeting room sound insulation</li>
           <li>Reverberation control in communal areas</li>
           <li>Integration with mechanical services noise control</li>
@@ -395,96 +388,6 @@
       tags: ["Room Acoustics", "Office Design", "Renovation"]
     }
   };
-
-  class Dot {
-    constructor(container) {
-      this.container = container;
-      this.resetPosition();
-      this.size = Math.random() * 2 + 2; // 2-4px size range
-      this.baseSize = this.size;
-      this.opacity = 0;
-      this.fadeSpeed = Math.random() * 0.004 + 0.002;
-      this.fadeDirection = 'in';
-      this.maxOpacity = Math.random() * 0.4 + 0.3; // Much higher opacity range 0.3-0.7
-      this.velocity = {
-        x: (Math.random() - 0.5) * 1,
-        y: (Math.random() - 0.5) * 1
-      };
-      this.pulseSpeed = Math.random() * 0.02 + 0.01;
-      this.pulsePhase = Math.random() * Math.PI * 2;
-
-      this.element = document.createElement('div');
-      this.element.className = 'modal-dot';
-      this.element.style.position = 'absolute';
-      this.element.style.width = `${this.size}px`;
-      this.element.style.height = `${this.size}px`;
-      this.element.style.borderRadius = '50%';
-      this.updatePosition();
-
-      const colorChoice = Math.random();
-      if (colorChoice > 0.7) {
-        // Bright electric blue
-        this.element.style.background = `rgba(0, 180, 255, 1.0)`;
-        this.element.style.boxShadow = `0 0 8px rgba(0, 180, 255, 0.8), 0 0 12px rgba(0, 180, 255, 0.5)`;
-      } else if (colorChoice > 0.4) {
-        // Bright cyan
-        this.element.style.background = `rgba(0, 255, 255, 1.0)`;
-        this.element.style.boxShadow = `0 0 8px rgba(0, 255, 255, 0.8), 0 0 12px rgba(0, 255, 255, 0.5)`;
-      } else {
-        // Bright white with blue tint
-        this.element.style.background = 'rgba(220, 240, 255, 1.0)';
-        this.element.style.boxShadow = `0 0 8px rgba(220, 240, 255, 0.8), 0 0 12px rgba(220, 240, 255, 0.5)`;
-      }
-
-      this.element.style.opacity = '0';
-      container.appendChild(this.element);
-    }
-
-    resetPosition() {
-      const rect = this.container?.getBoundingClientRect() || { width: window.innerWidth, height: window.innerHeight };
-      this.x = Math.random() * rect.width;
-      this.y = Math.random() * rect.height;
-    }
-
-    updatePosition() {
-      // Add movement
-      this.x += this.velocity.x;
-      this.y += this.velocity.y;
-
-      // Wrap around screen
-      const rect = this.container?.getBoundingClientRect() || { width: window.innerWidth, height: window.innerHeight };
-      if (this.x < 0) this.x = rect.width;
-      if (this.x > rect.width) this.x = 0;
-      if (this.y < 0) this.y = rect.height;
-      if (this.y > rect.height) this.y = 0;
-
-      // Add pulsing effect
-      const pulse = Math.sin(this.pulsePhase) * 0.3 + 1;
-      const currentSize = this.baseSize * pulse;
-      
-      this.element.style.transform = `translate3d(${this.x}px, ${this.y}px, 0) scale(${pulse})`;
-      this.pulsePhase += this.pulseSpeed;
-    }
-
-    update() {
-      if (this.fadeDirection === 'in') {
-        this.opacity += this.fadeSpeed;
-        if (this.opacity >= this.maxOpacity) {
-          this.opacity = this.maxOpacity;
-          this.fadeDirection = 'out';
-        }
-      } else {
-        this.opacity -= this.fadeSpeed;
-        if (this.opacity <= 0) {
-          this.opacity = 0;
-          this.fadeDirection = 'in';
-          this.resetPosition();
-        }
-      }
-      this.updatePosition();
-      this.element.style.opacity = this.opacity.toString();
-    }
-  }
 
   document.addEventListener('DOMContentLoaded', () => {
     const projectCards = document.querySelectorAll('.project-card');
@@ -497,52 +400,10 @@
     const modalImage = modal.querySelector('.modal-image');
     const closeBtn = modal.querySelector('.modal-close');
     const modalOverlay = modal.querySelector('.modal-overlay');
-    let dots = [];
-    let animationFrame = null;
-
-    function initModalDots() {
-      // Clear any existing dots
-      if (dotsContainer) {
-        dotsContainer.innerHTML = '';
-        dots = [];
-        const numDots = Math.floor(Math.min((window.innerWidth * window.innerHeight) / 10000, 120)); // Even more dots
-
-        // Wait for container to be visible
-        requestAnimationFrame(() => {
-          for (let i = 0; i < numDots; i++) {
-            dots.push(new Dot(dotsContainer));
-          }
-          // Start animation after dots are created
-          if (!animationFrame) {
-            animationFrame = requestAnimationFrame(animateDots);
-          }
-        });
-      }
-    }
-
-    function animateDots() {
-      if (dots.length > 0 && modal.classList.contains('active')) {
-        dots.forEach(dot => dot.update());
-        animationFrame = requestAnimationFrame(animateDots);
-      }
-    }
 
     function closeModal() {
       modal.classList.remove('active');
       document.body.style.overflow = '';
-      
-      // Stop animation and clear dots
-      if (animationFrame) {
-        cancelAnimationFrame(animationFrame);
-        animationFrame = null;
-      }
-      if (dotsContainer) {
-        dotsContainer.style.opacity = '0';
-        setTimeout(() => {
-          dotsContainer.innerHTML = '';
-          dots = [];
-        }, 300);
-      }
     }
 
     projectCards.forEach(card => {
@@ -567,21 +428,5 @@
 
     closeBtn.addEventListener('click', closeModal);
     modalOverlay.addEventListener('click', closeModal);
-
-    // Handle window resize
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-      if (modal.classList.contains('active')) {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-          // Reinitialize dots on resize
-          if (animationFrame) {
-            cancelAnimationFrame(animationFrame);
-            animationFrame = null;
-          }
-          initModalDots();
-        }, 250);
-      }
-    });
   });
 </script>

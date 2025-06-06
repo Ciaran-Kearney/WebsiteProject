@@ -8,20 +8,20 @@
 :root {
   font-size: 15px;
 
-  /* Slightly brighter theme colors */
-  --primary-bg: #10243D;        /* Brighter navy */
-  --primary-bg-darker: #0B1C30; /* Brighter darker navy */
-  --primary-bg-darkest: #081522;/* Brighter darkest navy */
+  /* Theme colors */
+  --primary-bg: #10243D;
+  --primary-bg-darker: #0B1C30;
+  --primary-bg-darkest: #081522;
 
-  --accent-primary: #1ED6F5;    /* Slightly brighter electric blue */
-  --accent-primary-light: #6DE3F7; /* Slightly brighter light electric blue */
-  --accent-secondary: #B3F0FB;  /* Slightly brighter sky blue */
-  --accent-secondary-light: #CCF6FD; /* Slightly brighter light sky blue */
+  --accent-primary: #1ED6F5;
+  --accent-primary-light: #6DE3F7;
+  --accent-secondary: #B3F0FB;
+  --accent-secondary-light: #CCF6FD;
 
-  --text-muted: #7A90AE;        /* Slightly brighter muted text */
-  --text-muted-dark: #60748E;   /* Slightly brighter dark muted text */
-  --text-primary: #F0F5FA;      /* Slightly brighter light grey */
-  --text-bright: #FFFFFF;       /* Already max brightness */
+  --text-muted: #7A90AE;
+  --text-muted-dark: #60748E;
+  --text-primary: #F0F5FA;
+  --text-bright: #FFFFFF;
 
   /* Component Colors */
   --background: #0A1929;
@@ -56,7 +56,6 @@
   --button-secondary-hover: rgba(30, 214, 245, 0.15);
 }
 
-
 body {
   font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
   font-size: 1rem;
@@ -88,9 +87,7 @@ body {
   50% { opacity: 0; }
 }
 
-/* Add these new styles near the top, after the body styles */
-
-/* Improve card readability */
+/* Card and text styles */
 .about-card,
 .work-card,
 .project-card,
@@ -104,13 +101,11 @@ body {
   z-index: 1;
 }
 
-/* Improve text readability with subtle text shadows on headings */
 h1, h2, h3, h4, h5, h6 {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   color: var(--heading-color);
 }
 
-/* Add subtle text shadows to improve readability on darker backgrounds */
 p, li, span, a {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
@@ -140,20 +135,18 @@ a:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -10; /* Keep dots in the very back */
+  z-index: -10;
   background-color: var(--background);
   overflow: hidden;
   pointer-events: none;
 }
 
-/* The dots will be created by JavaScript */
-.dot {
+.background-dot {
   position: absolute;
-  background-color: rgba(255, 255, 255, 0.5); /* Increased opacity for better visibility */
   border-radius: 50%;
   pointer-events: none;
-  box-shadow: 0 0 3px rgba(255, 255, 255, 0.35); /* Enhanced glow effect */
-  transition: transform 0.5s ease; /* Smooth size transitions */
+  box-shadow: 0 0 4px rgba(0, 180, 216, 0.3);
+  transition: opacity 0.3s ease;
 }
 
 /* Header and navigation */
@@ -1519,66 +1512,4 @@ h3, h4, .tag, .skill-item span {
   opacity: 1;
   padding: 1.5rem;
   border-top: none;
-}
-
-.cogwheel-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-  z-index: 9999;
-}
-
-.cogwheel {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: contain;
-  opacity: 0.15;
-  filter: drop-shadow(0 0 2px rgba(0, 180, 216, 0.3));
-  transition: transform 0.1s ease-out;
-}
-
-/* Left side cogwheels */
-.cogwheel.left {
-  left: 8px;
-}
-
-.cogwheel.left:nth-child(even) {
-  left: 20px;
-  width: 16px;
-  height: 16px;
-}
-
-/* Right side cogwheels */
-.cogwheel.right {
-  right: 8px;
-}
-
-.cogwheel.right:nth-child(even) {
-  right: 20px;
-  width: 16px;
-  height: 16px;
-}
-
-/* Vertical positioning - create pairs with proper spacing */
-.cogwheel:nth-child(1), .cogwheel:nth-child(11) { top: 20px; }
-.cogwheel:nth-child(2), .cogwheel:nth-child(12) { top: 32px; }
-.cogwheel:nth-child(3), .cogwheel:nth-child(13) { top: 60px; }
-.cogwheel:nth-child(4), .cogwheel:nth-child(14) { top: 72px; }
-.cogwheel:nth-child(5), .cogwheel:nth-child(15) { top: 100px; }
-.cogwheel:nth-child(6), .cogwheel:nth-child(16) { top: 112px; }
-.cogwheel:nth-child(7), .cogwheel:nth-child(17) { top: 140px; }
-.cogwheel:nth-child(8), .cogwheel:nth-child(18) { top: 152px; }
-.cogwheel:nth-child(9), .cogwheel:nth-child(19) { top: 180px; }
-.cogwheel:nth-child(10), .cogwheel:nth-child(20) { top: 192px; }
-
-/* Remove the continuous animation */
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }

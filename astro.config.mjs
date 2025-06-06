@@ -3,11 +3,11 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   // GitHub Pages settings (uncomment when deploying):
   // site: 'https://ciaran-kearney.github.io',
-  // base: '/WebsiteProject',
+  // base: '/WebsiteProjectDesktop',
   
   // Local development settings:
-  site: 'https://ciaran-kearney.github.io',
-  base: '/WebsiteProject',
+  site: 'http://localhost:4321',
+  base: '/WebsiteProjectDesktop',
   
   // Other Astro configuration options
   outDir: './dist',
