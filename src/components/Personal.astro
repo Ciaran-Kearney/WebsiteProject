@@ -23,10 +23,8 @@
             Successfully climbed a challenging 7c grade route indoors, demonstrating technical skill and determination
             in controlled climbing environments.
           </p>
-          <div class="media-preview" data-media="/assets/personal/indoor-7c.jpg" data-type="image">
-            <div class="media-placeholder">
-              <span>Click to view 📸</span>
-            </div>
+          <div class="media-preview">
+            <img src={import.meta.env.BASE_URL + "/assets/images/testimage.jpg"} alt="Indoor Climbing Achievement" loading="lazy" />
           </div>
         </div>
       </div>
@@ -106,21 +104,12 @@
     border-radius: 12px;
     overflow: hidden;
     transition: all 0.3s ease;
-    height: 80px; /* Initial height when collapsed */
-    cursor: pointer; /* Added cursor pointer */
+    height: 80px;
+    cursor: pointer;
   }
 
   .achievement-card.expanded {
-    height: 460px; /* Increased height when expanded */
-  }
-
-  .achievement-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--primary-bg);
-    border-radius: 12px;
-    z-index: -1;
+    height: 460px;
   }
 
   .achievement-header {
@@ -128,65 +117,20 @@
     display: flex;
     align-items: center;
     padding: 1.5rem;
-    gap: 1rem;
     border-bottom: 1px solid var(--border-subtle);
     background: inherit;
     z-index: 3;
   }
 
   .achievement-header h3 {
-    flex: 1;
     margin: 0;
     font-size: 1.1rem;
     color: var(--text-bright);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .expand-btn {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.3s ease;
-    flex-shrink: 0;
-  }
-
-  .plus-icon {
-    width: 20px;
-    height: 20px;
-    position: relative;
-  }
-
-  .plus-icon::before,
-  .plus-icon::after {
-    content: '';
-    position: absolute;
-    background-color: var(--accent-primary);
-    transition: all 0.3s ease;
-  }
-
-  .plus-icon::before {
-    width: 2px;
-    height: 20px;
-    left: 9px;
-    top: 0;
-  }
-
-  .plus-icon::after {
-    width: 20px;
-    height: 2px;
-    left: 0;
-    top: 9px;
   }
 
   .achievement-content {
     position: absolute;
-    top: 85px; /* Height of header */
+    top: 80px;
     left: 0;
     right: 0;
     padding: 0;
@@ -197,13 +141,9 @@
   }
 
   .achievement-card.expanded .achievement-content {
-    height: 375px; /* Increased content height */
+    height: 380px;
     opacity: 1;
     padding: 1.5rem;
-  }
-
-  .achievement-card.expanded .expand-btn {
-    transform: rotate(45deg);
   }
 
   .achievement-description {
@@ -214,12 +154,17 @@
   }
 
   .media-preview {
-    background: rgba(0, 0, 0, 0.2);
+    height: 240px;
     border-radius: 8px;
     overflow: hidden;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    height: 240px; /* Increased height for media container */
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .media-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   .media-placeholder {
@@ -231,94 +176,46 @@
     font-size: 1.1rem;
   }
 
-  .media-preview img,
-  .media-preview video {
-    width: 100%;
-    height: 240px; /* Increased height for media */
-    object-fit: cover;
-    display: none;
-  }
-
-  .media-preview.loaded img,
-  .media-preview.loaded video {
-    display: block;
-  }
-
-  .media-preview.loaded .media-placeholder {
-    display: none;
-  }
-
   @media (max-width: 768px) {
     .achievements-grid {
       grid-template-columns: 1fr;
-      padding: 0 1rem;
-    }
-
-    .achievement-card {
-      height: 85px;
-    }
-
-    .achievement-card.expanded {
-      height: 460px;
-    }
-
-    .achievement-description {
-      font-size: 0.9rem;
     }
   }
 </style>
 
 <script>
-  // Handle card expansion
-  document.querySelectorAll('.achievement-card').forEach(card => {
-    const btn = card.querySelector('.expand-btn');
-    
-    // Make the entire card clickable
-    card.addEventListener('click', (e) => {
-      // Don't trigger if clicking on media preview or the button
-      if (e.target.closest('.media-preview') || e.target.closest('.expand-btn')) return;
-      toggleCard(card, btn);
-    });
+  document.addEventListener('DOMContentLoaded', () => {
+    const achievementCards = document.querySelectorAll('.achievement-card');
 
-    // Handle button click separately
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      toggleCard(card, btn);
-    });
-
-    // Helper function to toggle card state
-    function toggleCard(card, btn) {
-      card.classList.toggle('expanded');
-      btn.style.transform = card.classList.contains('expanded') ? 'rotate(45deg)' : 'rotate(0deg)';
+    // Function to close all cards
+    function closeAllCards() {
+      achievementCards.forEach(card => {
+        card.classList.remove('expanded');
+      });
     }
-  });
 
-  // Handle media loading
-  document.querySelectorAll('.media-preview').forEach(preview => {
-    preview.addEventListener('click', (e) => {
-      e.stopPropagation(); // Prevent card expansion when clicking media
-      if (preview.classList.contains('loaded')) return;
+    // Add click handler to each card
+    achievementCards.forEach(card => {
+      const expandBtn = card.querySelector('.expand-btn');
+      
+      // Handle card click
+      card.addEventListener('click', (e) => {
+        // Don't trigger if clicking the expand button
+        if (e.target.closest('.expand-btn')) return;
+        e.stopPropagation();
+        card.classList.toggle('expanded');
+      });
 
-      const mediaUrl = preview.dataset.media;
-      const mediaType = preview.dataset.type;
+      // Handle expand button click
+      expandBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        card.classList.toggle('expanded');
+      });
+    });
 
-      if (mediaType === 'image') {
-        const img = new Image();
-        img.src = mediaUrl;
-        img.alt = 'Achievement photo';
-        img.onload = () => {
-          preview.appendChild(img);
-          preview.classList.add('loaded');
-        };
-      } else if (mediaType === 'video') {
-        const video = document.createElement('video');
-        video.src = mediaUrl;
-        video.controls = true;
-        video.onloadeddata = () => {
-          preview.appendChild(video);
-          preview.classList.add('loaded');
-        };
-      }
+    // Close all cards when clicking outside
+    document.addEventListener('click', () => {
+      closeAllCards();
     });
   });
 </script> 

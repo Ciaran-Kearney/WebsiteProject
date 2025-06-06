@@ -8,10 +8,7 @@
     <p class="section-subtitle">Professional Projects</p>
     <div class="projects-grid">
       <div class="project-card" data-project="grange">
-        <div class="project-header">
-          <div class="project-icon">🏭</div>
-          <h3>Grange Backup Power Plant</h3>
-        </div>
+        <h3>Grange Backup Power Plant</h3>
         <p class="project-description">Environmental noise planning application and assessment for a 96MW backup power plant project.</p>
         <div class="project-tags">
           <span class="tag">Environmental Noise</span>
@@ -22,10 +19,7 @@
       </div>
 
       <div class="project-card" data-project="bt">
-        <div class="project-header">
-          <div class="project-icon">🖥️</div>
-          <h3>BT Ireland Data Centre</h3>
-        </div>
+        <h3>BT Ireland Data Centre</h3>
         <p class="project-description">Environmental noise planning assessment for BT Ireland Data Centre in Blanchardstown.</p>
         <div class="project-tags">
           <span class="tag">Data Centre</span>
@@ -36,10 +30,7 @@
       </div>
 
       <div class="project-card" data-project="friarstown">
-        <div class="project-header">
-          <div class="project-icon">☀️</div>
-          <h3>Friarstown Solar Farm</h3>
-        </div>
+        <h3>Friarstown Solar Farm</h3>
         <p class="project-description">Environmental noise assessment for a 50MW solar farm development project.</p>
         <div class="project-tags">
           <span class="tag">Renewable Energy</span>
@@ -50,10 +41,7 @@
       </div>
 
       <div class="project-card" data-project="merck">
-        <div class="project-header">
-          <div class="project-icon">🏗️</div>
-          <h3>Merck 2.0 Manufacturing</h3>
-        </div>
+        <h3>Merck 2.0 Manufacturing</h3>
         <p class="project-description">Comprehensive noise assessment for a €150 million expansion of the Merck manufacturing facility.</p>
         <div class="project-tags">
           <span class="tag">Manufacturing</span>
@@ -64,10 +52,7 @@
       </div>
 
       <div class="project-card" data-project="dargle">
-        <div class="project-header">
-          <div class="project-icon">🏫</div>
-          <h3>Project Dargle Schools</h3>
-        </div>
+        <h3>Project Dargle Schools</h3>
         <p class="project-description">Environmental noise assessment for the Project Dargle Schools Bundle development.</p>
         <div class="project-tags">
           <span class="tag">Education</span>
@@ -78,10 +63,7 @@
       </div>
 
       <div class="project-card" data-project="irishlife">
-        <div class="project-header">
-          <div class="project-icon">🏢</div>
-          <h3>Irish Life Block 3</h3>
-        </div>
+        <h3>Irish Life Block 3</h3>
         <p class="project-description">Room acoustics design for major redevelopment of Irish Life offices on Abbey Street.</p>
         <div class="project-tags">
           <span class="tag">Room Acoustics</span>
@@ -97,12 +79,11 @@
 <!-- Modal Template -->
 <div class="project-modal" id="projectModal">
   <div class="modal-overlay"></div>
-  <div class="modal-dots-background"></div>
   <div class="modal-container">
     <button class="modal-close" aria-label="Close modal">×</button>
     <div class="modal-content">
       <div class="modal-media">
-        <div class="media-placeholder"></div>
+        <img class="modal-image" alt="" />
       </div>
       <div class="modal-info">
         <h2 class="modal-title"></h2>
@@ -132,42 +113,50 @@
     padding: 1.5rem;
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 
   .project-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 20px rgba(0, 180, 216, 0.15);
+    border-color: var(--accent-primary);
+    background: rgba(255, 255, 255, 0.05);
   }
 
-  .project-header {
+  .project-card h3 {
+    color: var(--text-bright);
+    font-size: 1.2rem;
+    margin: 0;
+  }
+
+  .project-description {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    flex-grow: 1;
+  }
+
+  .project-tags {
     display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .project-icon {
-    font-size: 1.5rem;
-    background: rgba(0, 180, 216, 0.1);
-    padding: 0.5rem;
-    border-radius: 8px;
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
 
   .view-project-btn {
-    margin-top: 1rem;
-    background: rgba(0, 180, 216, 0.1);
-    color: #00b4d8;
-    border: 1px solid #00b4d8;
-    padding: 0.5rem 1rem;
+    background: transparent;
+    border: 1px solid var(--accent-primary);
+    color: var(--accent-primary);
+    padding: 0.75rem;
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.3s ease;
-    width: 100%;
+    font-size: 0.9rem;
   }
 
   .view-project-btn:hover {
-    background: #00b4d8;
-    color: #0A1929;
+    background: var(--accent-primary);
+    color: var(--background);
   }
 
   /* Modal Styles */
@@ -194,19 +183,6 @@
     background: rgba(10, 25, 41, 0.85);
     backdrop-filter: blur(5px);
     z-index: 1001;
-  }
-
-  .modal-dots-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1002;
-    pointer-events: none;
-    overflow: hidden;
-    opacity: 0;
-    transition: opacity 0.3s ease;
   }
 
   .modal-container {
@@ -267,11 +243,10 @@
     overflow: hidden;
   }
 
-  .media-placeholder {
+  .modal-image {
     width: 100%;
-    padding-top: 56.25%; /* 16:9 aspect ratio */
-    background: rgba(0, 180, 216, 0.1);
-    position: relative;
+    height: auto;
+    border-radius: 8px;
   }
 
   .modal-title {
@@ -336,7 +311,8 @@
         </ul>
         <p>The project successfully achieved planning approval with innovative noise control solutions that balanced operational requirements with environmental protection.</p>
       `,
-      tags: ["Environmental Noise", "Power Generation", "96MW Facility"]
+      tags: ["Environmental Noise", "Power Generation", "96MW Facility"],
+      image: import.meta.env.BASE_URL + "/assets/images/testimage.jpg"
     },
     bt: {
       title: "BT Ireland Data Centre",
@@ -511,11 +487,16 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
+    const projectCards = document.querySelectorAll('.project-card');
     const modal = document.getElementById('projectModal');
-    const viewButtons = document.querySelectorAll('.view-project-btn');
-    const closeButton = modal.querySelector('.modal-close');
-    const overlay = modal.querySelector('.modal-overlay');
-    const dotsContainer = modal.querySelector('.modal-dots-background');
+    const modalContent = modal.querySelector('.modal-content');
+    const modalTitle = modal.querySelector('.modal-title');
+    const modalTags = modal.querySelector('.modal-tags');
+    const modalDescription = modal.querySelector('.modal-description');
+    const modalDetails = modal.querySelector('.modal-details');
+    const modalImage = modal.querySelector('.modal-image');
+    const closeBtn = modal.querySelector('.modal-close');
+    const modalOverlay = modal.querySelector('.modal-overlay');
     let dots = [];
     let animationFrame = null;
 
@@ -546,30 +527,6 @@
       }
     }
 
-    function openModal(projectId) {
-      const data = projectData[projectId];
-      if (!data) return;
-
-      // Populate modal content
-      modal.querySelector('.modal-title').textContent = data.title;
-      modal.querySelector('.modal-description').textContent = data.description;
-      modal.querySelector('.modal-details').innerHTML = data.details;
-      
-      // Populate tags
-      const tagsContainer = modal.querySelector('.modal-tags');
-      tagsContainer.innerHTML = data.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
-
-      // Show modal
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-
-      // Initialize dots after modal is visible
-      setTimeout(() => {
-        dotsContainer.style.opacity = '1';
-        initModalDots();
-      }, 100);
-    }
-
     function closeModal() {
       modal.classList.remove('active');
       document.body.style.overflow = '';
@@ -588,22 +545,28 @@
       }
     }
 
-    viewButtons.forEach(button => {
-      button.addEventListener('click', (e) => {
-        const projectId = e.target.closest('.project-card').dataset.project;
-        openModal(projectId);
+    projectCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const projectId = card.dataset.project;
+        const data = projectData[projectId];
+
+        modalTitle.textContent = data.title;
+        modalTags.innerHTML = data.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+        modalDescription.textContent = data.description;
+        modalDetails.innerHTML = data.details;
+
+        if (data.image) {
+          modalImage.src = data.image;
+          modalImage.alt = data.title;
+        }
+
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
       });
     });
 
-    closeButton.addEventListener('click', closeModal);
-    overlay.addEventListener('click', closeModal);
-
-    // Close on escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('active')) {
-        closeModal();
-      }
-    });
+    closeBtn.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', closeModal);
 
     // Handle window resize
     let resizeTimeout;
