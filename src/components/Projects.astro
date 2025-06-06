@@ -407,7 +407,9 @@
     }
 
     projectCards.forEach(card => {
-      card.addEventListener('click', () => {
+      const viewButton = card.querySelector('.view-project-btn');
+      viewButton.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent event from bubbling up
         const projectId = card.dataset.project;
         const data = projectData[projectId];
 
