@@ -296,6 +296,8 @@
 </style>
 
 <script>
+  const BASE_URL = import.meta.env.BASE_URL;
+  
   const projectData = {
     grange: {
       title: "Grange Backup Power Plant",
@@ -310,7 +312,8 @@
         </ul>
         <p>Successfully secured planning permission with all noise-related conditions approved.</p>
       `,
-      tags: ["Environmental Noise", "Power Generation", "96MW Facility"]
+      tags: ["Environmental Noise", "Power Generation", "96MW Facility"],
+      image: `${BASE_URL}/assets/images/projects/grange.jpg`
     },
     bt: {
       title: "BT Ireland Data Centre",
@@ -325,7 +328,8 @@
         </ul>
         <p>Project achieved all environmental noise targets and planning requirements.</p>
       `,
-      tags: ["Data Centre", "Environmental Assessment", "Planning"]
+      tags: ["Data Centre", "Environmental Assessment", "Planning"],
+      image: `${BASE_URL}/assets/images/projects/bt.jpg`
     },
     friarstown: {
       title: "Friarstown Solar Farm",
@@ -385,7 +389,8 @@
         </ul>
         <p>The project successfully delivered comfortable and productive workspace environments with excellent acoustic quality.</p>
       `,
-      tags: ["Room Acoustics", "Office Design", "Renovation"]
+      tags: ["Room Acoustics", "Office Design", "Renovation"],
+      image: `${BASE_URL}/assets/images/projects/irishlife.jpg`
     }
   };
 
