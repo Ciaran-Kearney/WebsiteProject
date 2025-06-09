@@ -21,7 +21,9 @@
             <li>Managed system integration of barcode scanners, vision systems, and PLC-based controls</li>
             <li>Conducted Factory and Site Acceptance Testing (FAT/SAT) for fully integrated lines</li>
             <li>Collaborated with vendors and internal teams to ensure seamless project delivery</li>
-            <li>Provided technical support and documentation for commissioning and handover</li>
+            <li>Supplied technical support and documentation for commissioning and handover</li>
+	    <li>Provided internal training for less experienced / less technical staff</li>
+	    <li>Implemented new technologies into existing internal processes</li>
           </ul>
         </div>
       </div>
@@ -45,35 +47,81 @@
         </div>
       </div>
 
-      <div class="work-card">
-        <div class="work-content">
-          <div class="work-header">
-            <div>
-              <h3>General Operative</h3>
-              <h4>Wright Concrete Products</h4>
-            </div>
+      <div class="work-mini-container">
+        <div class="work-mini-card">
+          <div class="work-mini-header">
+            <h3>General Operative</h3>
+            <h4>Wright Concrete Products</h4>
             <span class="work-period">2020</span>
           </div>
-          <ul class="work-responsibilities">
-            <li>Managed daily hollowcore production, quality control, and compressive strength testing</li>
-          </ul>
+          <p class="work-mini-description">Managed daily hollowcore production, quality control, and compressive strength testing</p>
         </div>
-      </div>
 
-      <div class="work-card">
-        <div class="work-content">
-          <div class="work-header">
-            <div>
-              <h3>Student Engineer</h3>
-              <h4>Thermo King Galway</h4>
-            </div>
+        <div class="work-mini-card">
+          <div class="work-mini-header">
+            <h3>Student Engineer</h3>
+            <h4>Thermo King Galway</h4>
             <span class="work-period">2019</span>
           </div>
-          <ul class="work-responsibilities">
-            <li>Assisted in developing and improving manufacturing processes on the production floor</li>
-          </ul>
+          <p class="work-mini-description">Assisted in developing and improving manufacturing processes on the production floor</p>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  /* Add these new styles for mini cards */
+  .work-mini-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .work-mini-card {
+    background: var(--background);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 1rem;
+    transition: transform 0.2s ease;
+  }
+
+  .work-mini-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .work-mini-header {
+    margin-bottom: 0.5rem;
+  }
+
+  .work-mini-header h3 {
+    font-size: 1rem;
+    color: var(--text-bright);
+    margin: 0;
+  }
+
+  .work-mini-header h4 {
+    font-size: 0.9rem;
+    color: var(--accent-primary);
+    margin: 0.2rem 0;
+  }
+
+  .work-mini-header .work-period {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .work-mini-description {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 768px) {
+    .work-mini-container {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -539,6 +539,20 @@ section {
   z-index: 0;
 }
 
+.work-card-compact {
+  padding: 1.5rem;
+  background: var(--background);
+}
+
+.work-card-compact::before {
+  display: none;
+}
+
+.work-card-compact .work-content {
+  width: 100%;
+  padding-right: 0;
+}
+
 .work-content {
   position: relative;
   z-index: 1;
