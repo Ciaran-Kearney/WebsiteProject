@@ -10,7 +10,7 @@ export default defineConfig({
   //base: '/WebsiteProject',
 
   // Live development settings
-  site: 'https://ciarangotskill.com/',
+  site: 'https://ciarangotskill.com',
   base: '/',
   
   // Other Astro configuration options
