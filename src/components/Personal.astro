@@ -24,7 +24,15 @@
             in controlled climbing environments.
           </p>
           <div class="media-preview">
-            <img src="/assets/images/testimage.jpg" alt="Indoor Climbing Achievement" loading="lazy" />
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/fYws9wzySbw"
+              title="Indoor Climbing Achievement"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
           </div>
         </div>
       </div>
@@ -60,10 +68,16 @@
             Completed the legendary 310m Blue Line multipitch in El Chorro, Spain. This extensive climb offers
             breathtaking views and requires sustained focus throughout its numerous pitches.
           </p>
-          <div class="media-preview" data-media="/assets/images/placeholder.png" data-type="image">
-            <div class="media-placeholder">
-              <span>Click to view 📸</span>
-            </div>
+          <div class="media-preview">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/KrDXHUQU21M"
+              title="El Chorro Blue Line Climb"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
           </div>
         </div>
       </div>
@@ -186,10 +200,23 @@
   document.addEventListener('DOMContentLoaded', () => {
     const achievementCards = document.querySelectorAll('.achievement-card');
 
+    // Function to stop all YouTube videos
+    function stopAllVideos() {
+      const iframes = document.querySelectorAll('.achievement-card iframe');
+      iframes.forEach(iframe => {
+        // Reset the src to stop the video
+        const src = iframe.src;
+        iframe.src = src;
+      });
+    }
+
     // Function to close all cards
     function closeAllCards() {
       achievementCards.forEach(card => {
-        card.classList.remove('expanded');
+        if (card.classList.contains('expanded')) {
+          card.classList.remove('expanded');
+          stopAllVideos();
+        }
       });
     }
 
@@ -202,12 +229,21 @@
         // Don't trigger if clicking the expand button
         if (e.target.closest('.expand-btn')) return;
         e.stopPropagation();
+        
+        // If we're closing this card, stop its video
+        if (card.classList.contains('expanded')) {
+          stopAllVideos();
+        }
         card.classList.toggle('expanded');
       });
 
       // Handle expand button click
       expandBtn.addEventListener('click', (e) => {
         e.stopPropagation();
+        // If we're closing this card, stop its video
+        if (card.classList.contains('expanded')) {
+          stopAllVideos();
+        }
         card.classList.toggle('expanded');
       });
     });
