@@ -530,13 +530,27 @@ section {
   position: absolute;
   top: 0;
   right: 0;
-  width: 35%;
+  width: 40%;
   height: 100%;
-  background-image: url('../assets/images/testimage.jpg');
   background-size: cover;
   background-position: center;
   opacity: 0.3;
   z-index: 0;
+}
+
+/* Project Engineer specific image */
+.work-card[data-position="project-engineer"]::before {
+  background-image: url('../assets/images/ProjectEng.jpg');
+}
+
+/* Acoustic Consultant specific image */
+.work-card[data-position="acoustic-consultant"]::before {
+  background-image: url('../assets/images/AcousticConsultant.jpg');
+}
+
+/* Hide background images for mini cards */
+.work-mini-card::before {
+  display: none;
 }
 
 .work-card-compact {
