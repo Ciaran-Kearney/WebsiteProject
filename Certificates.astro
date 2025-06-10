@@ -1,0 +1,111 @@
+---
+// Certificates component
+---
+
+<section id="certificates" class="certificates-section">
+  <div class="container">
+    <h2 class="section-title">Certificates</h2>
+    <div class="certificates-grid">
+      <div class="certificate-item">
+        <div class="certificate-content">
+          <h3>In-Sight Vision Suite</h3>
+          <p>Spreadsheet Advanced</p>
+        </div>
+      </div>
+
+      <div class="certificate-item">
+        <div class="certificate-content">
+          <h3>Cloud Solutions</h3>
+          <p>Expert Certification</p>
+        </div>
+      </div>
+
+      <div class="certificate-item">
+        <div class="certificate-content">
+          <h3>Technical Report Writing</h3>
+          <p>Engineers Ireland</p>
+        </div>
+      </div>
+
+      <div class="certificate-item">
+        <div class="certificate-content">
+          <h3>Safe Pass</h3>
+          <p>Fás Certification</p>
+        </div>
+      </div>
+
+      <div class="certificate-item">
+        <div class="certificate-content">
+          <h3>Driver's Licence</h3>
+          <p>Full Irish Licence</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .certificates-section {
+    padding: 4rem 0;
+  }
+
+  .certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .certificate-card {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .certificate-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 20px rgba(0, 180, 216, 0.15);
+  }
+
+  .certificate-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .certificate-description {
+    color: #94a3b8;
+    margin-bottom: 1rem;
+  }
+
+  .certificate-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    background: rgba(0, 180, 216, 0.1);
+    color: #00b4d8;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.875rem;
+  }
+
+  h3 {
+    color: var(--text-bright);
+    margin-bottom: 4px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+
+  p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    letter-spacing: 0.2px;
+  }
+</style> 

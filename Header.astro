@@ -1,0 +1,154 @@
+---
+// Header component
+---
+
+<header>
+  <div class="container">
+    <nav>
+      <div class="logo">
+        <a href={import.meta.env.BASE_URL + "/"}>Ciarán Kearney</a>
+      </div>
+      <div class="menu-toggle" id="menu-toggle">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li class="cv-button-container">
+          <a href="/assets/cv/CiaranKearney_CV.pdf" class="cv-button" download>
+            Download CV
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(10, 25, 41, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+  }
+
+  .logo a {
+    color: var(--text-bright);
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .logo a:hover {
+    color: var(--accent-primary);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--text-bright);
+  }
+
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .bar {
+    width: 25px;
+    height: 2px;
+    background-color: var(--text-muted);
+    transition: 0.3s;
+  }
+
+  .cv-button-container {
+    margin-left: 1rem;
+  }
+
+  .cv-button {
+    display: inline-flex;
+    align-items: center;
+    color: var(--text-muted) !important;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid var(--text-muted);
+  }
+
+  .cv-button:hover {
+    color: var(--text-bright) !important;
+    border-color: var(--text-bright);
+  }
+
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: flex;
+    }
+
+    .nav-links {
+      position: fixed;
+      top: 80px;
+      left: 0;
+      width: 100%;
+      background: rgba(10, 25, 41, 0.95);
+      backdrop-filter: blur(10px);
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 0;
+      gap: 1.5rem;
+      clip-path: circle(0px at top right);
+      transition: clip-path 0.5s ease-out;
+    }
+
+    .nav-links.active {
+      clip-path: circle(1000px at top right);
+    }
+
+    .cv-button-container {
+      margin-left: 0;
+      margin-top: 0.5rem;
+    }
+
+    .cv-button {
+      padding: 0.75rem 1.5rem;
+    }
+  }
+</style>
