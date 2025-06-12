@@ -6,12 +6,12 @@ export default defineConfig({
   //base: '/WebsiteProject',
 
   // Local development settings
-  //site: 'http://localhost:4321',
-  //base: '/WebsiteProject',
+  site: 'http://localhost:4321',
+  base: '/',
 
   // Live development settings
-  site: 'https://ciarangotskill.com',
-  base: '/',
+  //site: 'https://ciarangotskill.com',
+  //base: '/',
   
   // Other Astro configuration options
   outDir: './dist',
@@ -21,5 +21,8 @@ export default defineConfig({
   // Enable TypeScript for better developer experience
   typescript: {
     strict: true
-  }
+  },
+
+  // Enable middleware support
+  output: 'server'
 });
