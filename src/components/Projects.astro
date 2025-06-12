@@ -329,6 +329,8 @@
 </style>
 
 <script>
+  const BASE_URL = import.meta.env.BASE_URL;
+  
   const projectData = {
     grange: {
       title: "Grange Backup Power Plant",
@@ -345,7 +347,7 @@
         <p>Successfully secured planning permission with all noise-related conditions fully approved.</p>
       `,
       tags: ["Environmental Noise", "Power Generation", "Noise Mitigation"],
-      image: "/assets/images/projects/grange.jpg"
+      image: `${BASE_URL}/assets/images/projects/grange.jpg`
     },
     bt: {
       title: "BT Ireland Data Centre",
@@ -361,7 +363,7 @@
         <p>Project met all environmental noise targets and planning requirements.</p>
       `,
       tags: ["Data Centre", "Environmental Assessment", "Noise Monitoring"],
-      image: "/assets/images/projects/bt.jpg"
+      image: `${BASE_URL}/assets/images/projects/bt.jpg`
     },
     merck: {
       title: "Merck 2.0 Manufacturing Expansion",
@@ -376,7 +378,7 @@
         <p>Project delivered on time and met all regulatory acoustic requirements.</p>
       `,
       tags: ["Pharmaceutical", "EPA Compliance", "Facility Expansion"],
-      image: "/assets/images/projects/merck.jpg"
+      image: `${BASE_URL}/assets/images/projects/merck.jpg`
     },
     dargle: {
       title: "Project Dargle Schools Bundle",
@@ -392,7 +394,7 @@
         <p>Planning permission successfully achieved across all school sites.</p>
       `,
       tags: ["Education", "Building Acoustics", "SDG Standards"],
-      image: "/assets/images/projects/dargle.jpg"
+      image: `${BASE_URL}/assets/images/projects/dargle.jpg`
     },
     irishlife: {
       title: "Irish Life Block 3 – Abbey Street, Dublin",
@@ -422,7 +424,7 @@
         <p>Enabled accurate assessment in challenging conditions, contributing to ongoing compliance and operations.</p>
       `,
       tags: ["Power Generation", "EPA Compliance", "Noise Measurement"],
-      image: "/assets/images/projects/esb.jpg"
+      image: `${BASE_URL}/assets/images/projects/esb.jpg`
     },
     stryker: {
       title: "Stryker Cobot Cell",
@@ -437,7 +439,7 @@
         <p>Successfully designed and demonstrated an automated packaging and inspection workflow.</p>
       `,
       tags: ["Automation", "Vision Systems", "Robotics"],
-      image: "/assets/images/projects/stryker.jpg"
+      image: `${BASE_URL}/assets/images/projects/stryker.jpg`
     },
     almac: {
       title: "Almac Syringe Labeller",
@@ -453,7 +455,7 @@
         <p>System commissioned with no delays and fully integrated into production workflow.</p>
       `,
       tags: ["Automation", "System Integration", "Validation"],
-      image: "/assets/images/projects/almac.jpg"
+      image: `${BASE_URL}/assets/images/projects/almac.jpg`
     },
     viatris: {
       title: "Viatris Line 3",
@@ -469,7 +471,7 @@
         <p>High-performance line successfully brought into production with full validation compliance.</p>
       `,
       tags: ["Automation", "Vision Inspection", "Manufacturing"],
-      image: "/assets/images/projects/viatris.jpg"
+      image: `${BASE_URL}/assets/images/projects/viatris.jpg`
     }
   };
 

@@ -6,8 +6,8 @@ export default defineConfig({
   //base: '/WebsiteProject',
 
   // Local development settings
-  //site: 'http://localhost:4321',
-  //base: '/',
+  site: 'http://localhost:4321',
+  base: '/',
 
   // Live development settings
   site: 'https://ciarangotskill.com',
@@ -23,6 +23,6 @@ export default defineConfig({
     strict: true
   },
 
-  // Enable middleware support
-  output: 'server'
+  // Use static output
+  output: 'static'
 });

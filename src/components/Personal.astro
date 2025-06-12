@@ -68,16 +68,13 @@
             Completed the legendary 310m Blue Line multipitch in El Chorro, Spain. This extensive climb offers
             breathtaking views and requires sustained focus throughout its numerous pitches.
           </p>
-          <div class="media-preview">
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/KrDXHUQU21M"
-              title="El Chorro Blue Line Climb"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
+          <div class="media-preview youtube-preview" data-video-id="KrDXHUQU21M">
+            <div class="media-placeholder">
+              <button class="play-button" aria-label="Play video">
+                <span class="play-icon">▶</span>
+                <span>Click to play</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -171,6 +168,7 @@
     border-radius: 8px;
     overflow: hidden;
     background: rgba(0, 0, 0, 0.2);
+    position: relative;
   }
 
   .media-preview img {
@@ -187,6 +185,28 @@
     justify-content: center;
     color: var(--text-muted);
     font-size: 1.1rem;
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  .play-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    color: var(--text-bright);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .play-button:hover {
+    transform: scale(1.1);
+  }
+
+  .play-icon {
+    font-size: 2rem;
+    color: var(--accent-primary);
   }
 
   @media (max-width: 768px) {
@@ -199,58 +219,42 @@
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const achievementCards = document.querySelectorAll('.achievement-card');
+    const youtubePreview = document.querySelector('.youtube-preview');
 
-    // Function to stop all YouTube videos
-    function stopAllVideos() {
-      const iframes = document.querySelectorAll('.achievement-card iframe');
-      iframes.forEach(iframe => {
-        // Reset the src to stop the video
-        const src = iframe.src;
-        iframe.src = src;
-      });
+    // Function to create YouTube iframe
+    function createYoutubeIframe(videoId: string) {
+      const iframe = document.createElement('iframe');
+      iframe.width = '100%';
+      iframe.height = '100%';
+      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+      iframe.title = 'El Chorro Blue Line Climb';
+      iframe.frameBorder = '0';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullscreen = true;
+      return iframe;
     }
 
-    // Function to close all cards
-    function closeAllCards() {
-      achievementCards.forEach(card => {
-        if (card.classList.contains('expanded')) {
-          card.classList.remove('expanded');
-          stopAllVideos();
+    // Handle YouTube preview click
+    if (youtubePreview) {
+      const videoId = youtubePreview.getAttribute('data-video-id');
+      const placeholder = youtubePreview.querySelector('.media-placeholder');
+
+      placeholder?.addEventListener('click', () => {
+        if (videoId) {
+          const iframe = createYoutubeIframe(videoId);
+          youtubePreview.innerHTML = '';
+          youtubePreview.appendChild(iframe);
         }
       });
     }
 
-    // Add click handler to each card
+    // Handle achievement card expansion
     achievementCards.forEach(card => {
-      const expandBtn = card.querySelector('.expand-btn');
-      
-      // Handle card click
-      card.addEventListener('click', (e) => {
-        // Don't trigger if clicking the expand button
-        if (e.target.closest('.expand-btn')) return;
+      const button = card.querySelector('.expand-btn');
+      button?.addEventListener('click', (e) => {
         e.stopPropagation();
-        
-        // If we're closing this card, stop its video
-        if (card.classList.contains('expanded')) {
-          stopAllVideos();
-        }
         card.classList.toggle('expanded');
       });
-
-      // Handle expand button click
-      expandBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        // If we're closing this card, stop its video
-        if (card.classList.contains('expanded')) {
-          stopAllVideos();
-        }
-        card.classList.toggle('expanded');
-      });
-    });
-
-    // Close all cards when clicking outside
-    document.addEventListener('click', () => {
-      closeAllCards();
     });
   });
 </script> 
