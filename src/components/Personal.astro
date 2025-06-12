@@ -14,9 +14,6 @@
       <div class="achievement-card">
         <div class="achievement-header">
           <h3>Diga di Luzzone Dam</h3>
-          <button class="expand-btn" aria-label="Toggle details">
-            <span class="plus-icon"></span>
-          </button>
         </div>
         <div class="achievement-content">
           <p class="achievement-description">
@@ -33,9 +30,6 @@
       <div class="achievement-card">
         <div class="achievement-header">
           <h3>Indoor Climbing Achievement</h3>
-          <button class="expand-btn" aria-label="Toggle details">
-            <span class="plus-icon"></span>
-          </button>
         </div>
         <div class="achievement-content">
           <p class="achievement-description">
@@ -59,9 +53,6 @@
       <div class="achievement-card">
         <div class="achievement-header">
           <h3>El Chorro Blue Line</h3>
-          <button class="expand-btn" aria-label="Toggle details">
-            <span class="plus-icon"></span>
-          </button>
         </div>
         <div class="achievement-content">
           <p class="achievement-description">
@@ -116,102 +107,118 @@
     transition: all 0.3s ease;
     height: 80px;
     cursor: pointer;
+    margin-bottom: 0;
+  }
+
+  .achievement-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-primary);
+    box-shadow: 0 4px 20px rgba(0, 180, 216, 0.15);
   }
 
   .achievement-card.expanded {
-    height: 460px;
+    height: auto;
+    min-height: 460px;
+    cursor: default;
+    margin-bottom: 2rem;
   }
 
   .achievement-header {
+    padding: 20px;
     position: relative;
-    display: flex;
-    align-items: center;
-    padding: 1.5rem;
-    border-bottom: 1px solid var(--border-subtle);
-    background: inherit;
-    z-index: 3;
+    z-index: 2;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+
+  .achievement-card.expanded .achievement-header {
+    border-bottom-color: var(--border-subtle);
   }
 
   .achievement-header h3 {
-    margin: 0;
-    font-size: 1.1rem;
     color: var(--text-bright);
+    margin: 0;
+    font-size: 1.2rem;
   }
 
   .achievement-content {
-    position: absolute;
-    top: 80px;
-    left: 0;
-    right: 0;
-    padding: 0;
-    height: 0;
+    padding: 20px;
     opacity: 0;
-    overflow: hidden;
+    transform: translateY(-20px);
     transition: all 0.3s ease;
+    pointer-events: none;
+    max-height: 0;
+    overflow: hidden;
   }
 
   .achievement-card.expanded .achievement-content {
-    height: 380px;
     opacity: 1;
-    padding: 1.5rem;
+    transform: translateY(0);
+    pointer-events: auto;
+    max-height: 1000px;
   }
 
   .achievement-description {
     color: var(--text-muted);
-    margin-bottom: 1.5rem;
+    margin-bottom: 20px;
     line-height: 1.6;
-    font-size: 0.95rem;
   }
 
   .media-preview {
-    height: 240px;
+    width: 100%;
+    height: 250px;
+    background: rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     overflow: hidden;
-    background: rgba(0, 0, 0, 0.2);
     position: relative;
   }
 
-  .media-preview img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
   .media-placeholder {
-    height: 100%;
+    position: absolute;
+    inset: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-muted);
-    font-size: 1.1rem;
+    background: rgba(0, 0, 0, 0.4);
+    color: var(--text-bright);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .media-placeholder:hover {
     background: rgba(0, 0, 0, 0.6);
   }
 
   .play-button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
     background: none;
     border: none;
     color: var(--text-bright);
+    display: flex;
+    align-items: center;
+    gap: 10px;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    padding: 10px 20px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
   }
 
   .play-button:hover {
-    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
   }
 
   .play-icon {
-    font-size: 2rem;
-    color: var(--accent-primary);
+    font-size: 1.5rem;
   }
 
   @media (max-width: 768px) {
-    .achievements-grid {
-      grid-template-columns: 1fr;
+    .achievement-card.expanded {
+      min-height: 420px;
+    }
+
+    .media-preview {
+      height: 200px;
     }
   }
 </style>
@@ -226,7 +233,8 @@
       const iframe = document.createElement('iframe');
       iframe.width = '100%';
       iframe.height = '100%';
-      iframe.src = `https://www.youtube.com/embed/${encodeURIComponent(videoId)}?autoplay=1&rel=0&modestbranding=1`;
+      // Remove autoplay from the URL
+      iframe.src = `https://www.youtube.com/embed/${encodeURIComponent(videoId)}?rel=0&modestbranding=1`;
       iframe.title = 'El Chorro Blue Line Climb';
       iframe.setAttribute('frameborder', '0');
       iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
@@ -237,12 +245,34 @@
       return iframe;
     }
 
+    // Handle card clicks
+    achievementCards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent document click from immediately closing
+        card.classList.toggle('expanded'); // Simply toggle the expanded state
+      });
+
+      // Prevent collapse when clicking on content
+      const content = card.querySelector('.achievement-content');
+      content?.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent card from toggling when clicking content
+      });
+    });
+
+    // Close all cards when clicking outside
+    document.addEventListener('click', () => {
+      achievementCards.forEach(card => {
+        card.classList.remove('expanded');
+      });
+    });
+
     // Handle YouTube preview click
     if (youtubePreview) {
       const videoId = youtubePreview.getAttribute('data-video-id');
       const placeholder = youtubePreview.querySelector('.media-placeholder');
 
-      placeholder?.addEventListener('click', () => {
+      placeholder?.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent card from toggling when clicking video
         if (videoId) {
           const iframe = createYoutubeIframe(videoId);
           youtubePreview.innerHTML = '';
@@ -250,14 +280,5 @@
         }
       });
     }
-
-    // Handle achievement card expansion
-    achievementCards.forEach(card => {
-      const button = card.querySelector('.expand-btn');
-      button?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        card.classList.toggle('expanded');
-      });
-    });
   });
 </script> 
