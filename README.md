@@ -53,8 +53,7 @@ npm run preview
 │   ├── assets/
 │   │   ├── images/
 │   │   └── projects/
-│   ├── styles/
-│   └── favicon.svg
+│   └── styles/
 ├── src/
 │   ├── components/
 │   ├── layouts/
