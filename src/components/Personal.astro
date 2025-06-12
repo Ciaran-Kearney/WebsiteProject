@@ -11,7 +11,7 @@
     </p>
 
     <div class="achievements-grid">
-      <div class="achievement-card">
+      <div class="achievement-card" data-project="luzzone">
         <div class="achievement-header">
           <h3>Diga di Luzzone Dam</h3>
         </div>
@@ -27,7 +27,7 @@
         </div>
       </div>
 
-      <div class="achievement-card">
+      <div class="achievement-card" data-project="indoor">
         <div class="achievement-header">
           <h3>Indoor Climbing Achievement</h3>
         </div>
@@ -36,21 +36,26 @@
             Successfully climbed a challenging 7c grade route indoors, demonstrating technical skill and determination
             in controlled climbing environments.
           </p>
-          <div class="media-preview">
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/fYws9wzySbw"
-              title="Indoor Climbing Achievement"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
+          <div class="youtube-facade" data-video-id="QOhAWoWDG8g">
+            <div class="facade-thumbnail">
+              <img 
+                src={`https://i.ytimg.com/vi/fYws9wzySbw/hqdefault.jpg`} 
+                alt="Indoor Climbing Achievement Video Thumbnail"
+                loading="lazy"
+                width="480"
+                height="360"
+              />
+              <button class="play-button" aria-label="Play video">
+                <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M8 5v14l11-7z" fill="currentColor"/>
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="achievement-card">
+      <div class="achievement-card" data-project="chorro">
         <div class="achievement-header">
           <h3>El Chorro Blue Line</h3>
         </div>
@@ -59,11 +64,19 @@
             Completed the legendary 310m Blue Line multipitch in El Chorro, Spain. This extensive climb offers
             breathtaking views and requires sustained focus throughout its numerous pitches.
           </p>
-          <div class="media-preview youtube-preview" data-video-id="KrDXHUQU21M">
-            <div class="media-placeholder">
+          <div class="youtube-facade" data-video-id="5OpzU1pp3ns">
+            <div class="facade-thumbnail">
+              <img 
+                src={`https://i.ytimg.com/vi/KrDXHUQU21M/hqdefault.jpg`} 
+                alt="El Chorro Blue Line Video Thumbnail"
+                loading="lazy"
+                width="480"
+                height="360"
+              />
               <button class="play-button" aria-label="Play video">
-                <span class="play-icon">▶</span>
-                <span>Click to play</span>
+                <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M8 5v14l11-7z" fill="currentColor"/>
+                </svg>
               </button>
             </div>
           </div>
@@ -72,6 +85,80 @@
     </div>
   </div>
 </section>
+
+<script>
+  // Intersection Observer for lazy loading
+  const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const card = entry.target;
+        initCard(card);
+        cardObserver.unobserve(card);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  // Observe all achievement cards
+  document.querySelectorAll('.achievement-card').forEach(card => {
+    cardObserver.observe(card);
+  });
+
+  function initCard(card) {
+    const content = card.querySelector('.achievement-content');
+    let isExpanded = false;
+
+    function toggleCard(e) {
+      e.stopPropagation();
+      
+      if (!isExpanded) {
+        // Close other cards first
+        document.querySelectorAll('.achievement-card.expanded').forEach(otherCard => {
+          if (otherCard !== card) {
+            otherCard.classList.remove('expanded');
+          }
+        });
+      }
+      
+      card.classList.toggle('expanded');
+      isExpanded = !isExpanded;
+    }
+
+    // Add click handlers
+    card.addEventListener('click', toggleCard);
+    content?.addEventListener('click', e => e.stopPropagation());
+
+    // Initialize YouTube facades if present
+    const facade = card.querySelector('.youtube-facade');
+    if (facade) {
+      const videoId = facade.dataset.videoId;
+      const playButton = facade.querySelector('.play-button');
+
+      playButton?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        
+        // Create and insert iframe only when clicked
+        const iframe = document.createElement('iframe');
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('allowfullscreen', '1');
+        iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+        iframe.setAttribute('width', '100%');
+        iframe.setAttribute('height', '100%');
+        iframe.setAttribute('src', `https://www.youtube.com/embed/${videoId}?autoplay=1`);
+        
+        facade.innerHTML = '';
+        facade.appendChild(iframe);
+        facade.style.cursor = 'default';
+      });
+    }
+  }
+
+  // Close cards when clicking outside
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.achievement-card.expanded').forEach(card => {
+      card.classList.remove('expanded');
+    });
+  });
+</script>
 
 <style>
   .personal-section {
@@ -190,26 +277,30 @@
   }
 
   .play-button {
-    background: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 68px;
+    height: 48px;
+    background-color: rgba(0, 0, 0, 0.8);
     border: none;
-    color: var(--text-bright);
+    border-radius: 8px;
+    cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    padding: 10px 20px;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
+    justify-content: center;
+    transition: background-color 0.3s;
   }
 
   .play-button:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.05);
+    background-color: var(--accent-primary);
   }
 
   .play-icon {
-    font-size: 1.5rem;
+    width: 24px;
+    height: 24px;
+    color: white;
   }
 
   @media (max-width: 768px) {
@@ -221,64 +312,31 @@
       height: 200px;
     }
   }
-</style>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const achievementCards = document.querySelectorAll('.achievement-card');
-    const youtubePreview = document.querySelector('.youtube-preview');
+  .youtube-facade {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    background: #000;
+    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden;
+  }
 
-    // Function to create YouTube iframe
-    function createYoutubeIframe(videoId: string) {
-      const iframe = document.createElement('iframe');
-      iframe.width = '100%';
-      iframe.height = '100%';
-      // Remove autoplay from the URL
-      iframe.src = `https://www.youtube.com/embed/${encodeURIComponent(videoId)}?rel=0&modestbranding=1`;
-      iframe.title = 'El Chorro Blue Line Climb';
-      iframe.setAttribute('frameborder', '0');
-      iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-      iframe.setAttribute('allowfullscreen', '');
-      iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-presentation');
-      iframe.setAttribute('loading', 'lazy');
-      iframe.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
-      return iframe;
-    }
+  .facade-thumbnail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    // Handle card clicks
-    achievementCards.forEach(card => {
-      card.addEventListener('click', (e) => {
-        e.stopPropagation(); // Prevent document click from immediately closing
-        card.classList.toggle('expanded'); // Simply toggle the expanded state
-      });
-
-      // Prevent collapse when clicking on content
-      const content = card.querySelector('.achievement-content');
-      content?.addEventListener('click', (e) => {
-        e.stopPropagation(); // Prevent card from toggling when clicking content
-      });
-    });
-
-    // Close all cards when clicking outside
-    document.addEventListener('click', () => {
-      achievementCards.forEach(card => {
-        card.classList.remove('expanded');
-      });
-    });
-
-    // Handle YouTube preview click
-    if (youtubePreview) {
-      const videoId = youtubePreview.getAttribute('data-video-id');
-      const placeholder = youtubePreview.querySelector('.media-placeholder');
-
-      placeholder?.addEventListener('click', (e) => {
-        e.stopPropagation(); // Prevent card from toggling when clicking video
-        if (videoId) {
-          const iframe = createYoutubeIframe(videoId);
-          youtubePreview.innerHTML = '';
-          youtubePreview.appendChild(iframe);
-        }
-      });
-    }
-  });
-</script> 
+  .facade-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style> 

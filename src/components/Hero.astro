@@ -5,7 +5,7 @@
 <section class="hero">
   <div class="container">
     <div class="hero-content">
-      <h1>Hi, I'm <span class="highlight">Ciarán</span></h1>
+      <h1 class="hero-title">Hi, I'm <span class="highlight">Ciarán</span></h1>
       <p class="subtitle">I am <span id="article">a</span> <span id="typed-text" class="highlight"></span><span class="cursor">&nbsp;</span></p>
       <div class="cta-buttons">
         <a href="#contact" class="btn primary">Contact me</a>
@@ -17,7 +17,19 @@
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  // Defer typing animation until hero section is visible
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        initTyping();
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.1 });
+
+  observer.observe(document.querySelector('.hero'));
+
+  function initTyping() {
     const typedText = document.getElementById('typed-text');
     const articleElement = document.getElementById('article');
     const cursor = document.querySelector('.cursor');
@@ -40,6 +52,7 @@
     let charIndex = 0;
     let isDeleting = false;
     let isComplete = false;
+    let typeTimeout = null;
 
     function updateArticle() {
       const currentItem = textArray[arrayIndex];
@@ -47,6 +60,12 @@
     }
 
     function typeWriter() {
+      if (document.hidden) {
+        if (typeTimeout) clearTimeout(typeTimeout);
+        typeTimeout = setTimeout(typeWriter, 100);
+        return;
+      }
+
       const currentItem = textArray[arrayIndex];
       const currentText = currentItem.text;
 
@@ -79,14 +98,75 @@
         if (arrayIndex >= textArray.length) {
           arrayIndex = 0;
         }
-        updateArticle(); // Update article when starting new text
+        updateArticle();
       }
 
-      setTimeout(typeWriter, typeSpeed);
+      typeTimeout = setTimeout(typeWriter, typeSpeed);
     }
 
-    // Initialize with first article
+    // Start typing
     updateArticle();
-    setTimeout(typeWriter, 1000);
-  });
+    typeTimeout = setTimeout(typeWriter, 1000);
+
+    // Cleanup on page visibility change
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        if (typeTimeout) clearTimeout(typeTimeout);
+      } else {
+        typeTimeout = setTimeout(typeWriter, 100);
+      }
+    });
+  }
 </script>
+
+<style>
+  .hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding-top: 80px;
+    contain: content;
+  }
+
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    will-change: transform;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--heading-color);
+    text-rendering: optimizeLegibility;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 2px;
+    background-color: var(--accent-primary);
+    margin-left: 2px;
+    animation: blink 1s infinite;
+  }
+
+  .cursor.typing {
+    animation: none;
+  }
+
+  .cursor.hide {
+    display: none;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2rem;
+    }
+  }
+</style>

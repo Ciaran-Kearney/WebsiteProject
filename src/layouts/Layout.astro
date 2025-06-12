@@ -15,6 +15,14 @@ const { title, description = "Personal portfolio website for Ciarán Kearney, Me
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/styles/global.css" as="style">
+    
+    <!-- Font optimization -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
     <link rel="stylesheet" href="/styles/global.css" />
   </head>
   <body>
@@ -39,179 +47,130 @@ const { title, description = "Personal portfolio website for Ciarán Kearney, Me
       }
     </style>
 
-    <script is:inline>
+    <script>
+      // Defer background animation initialization
+      let isAnimating = false;
+      let animationFrame = null;
+      const dots = [];
+      
+      // Intersection Observer for background animation
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !isAnimating) {
+            startAnimation();
+          } else if (!entry.isIntersecting && isAnimating) {
+            stopAnimation();
+          }
+        });
+      }, { threshold: 0.1 });
+
       class Dot {
-        constructor(container) {
+        constructor(container, x, y) {
           this.container = container;
-          this.resetPosition();
+          this.x = x;
+          this.y = y;
           this.size = Math.random() * 2 + 2;
-          this.baseSize = this.size;
-          this.opacity = 0;
-          this.fadeSpeed = Math.random() * 0.004 + 0.002;
-          this.fadeDirection = 'in';
-          this.maxOpacity = Math.random() * 0.4 + 0.3;
+          this.opacity = Math.random() * 0.4 + 0.3;
           this.velocity = {
-            x: (Math.random() - 0.5) * 0.5,
-            y: (Math.random() - 0.5) * 0.5
+            x: (Math.random() - 0.5) * 0.2,
+            y: (Math.random() - 0.5) * 0.2
           };
-          this.pulseSpeed = Math.random() * 0.02 + 0.01;
-          this.pulsePhase = Math.random() * Math.PI * 2;
 
           this.element = document.createElement('div');
           this.element.className = 'background-dot';
-          this.element.style.position = 'absolute';
           this.element.style.width = `${this.size}px`;
           this.element.style.height = `${this.size}px`;
-          this.element.style.borderRadius = '50%';
-          this.updatePosition();
-
+          this.element.style.opacity = this.opacity;
+          
           const colorChoice = Math.random();
-          if (colorChoice > 0.7) {
-            this.element.style.background = `rgba(0, 180, 255, 1.0)`;
-            this.element.style.boxShadow = `0 0 8px rgba(0, 180, 255, 0.8), 0 0 12px rgba(0, 180, 255, 0.5)`;
-          } else if (colorChoice > 0.4) {
-            this.element.style.background = `rgba(0, 255, 255, 1.0)`;
-            this.element.style.boxShadow = `0 0 8px rgba(0, 255, 255, 0.8), 0 0 12px rgba(0, 255, 255, 0.5)`;
-          } else {
-            this.element.style.background = 'rgba(220, 240, 255, 1.0)';
-            this.element.style.boxShadow = `0 0 8px rgba(220, 240, 255, 0.8), 0 0 12px rgba(220, 240, 255, 0.5)`;
-          }
-
-          this.element.style.opacity = '0';
+          this.element.style.background = colorChoice > 0.7 
+            ? 'rgba(0, 180, 255, 1.0)'
+            : colorChoice > 0.4 
+              ? 'rgba(0, 255, 255, 1.0)'
+              : 'rgba(220, 240, 255, 1.0)';
+          
+          this.updatePosition();
           container.appendChild(this.element);
-        }
-
-        resetPosition() {
-          const rect = this.container?.getBoundingClientRect() || { width: window.innerWidth, height: window.innerHeight };
-          this.x = Math.random() * rect.width;
-          this.y = Math.random() * rect.height;
         }
 
         updatePosition() {
           this.x += this.velocity.x;
           this.y += this.velocity.y;
 
-          const rect = this.container?.getBoundingClientRect() || { width: window.innerWidth, height: window.innerHeight };
+          const rect = this.container.getBoundingClientRect();
           if (this.x < 0) this.x = rect.width;
           if (this.x > rect.width) this.x = 0;
           if (this.y < 0) this.y = rect.height;
           if (this.y > rect.height) this.y = 0;
 
-          const pulse = Math.sin(this.pulsePhase) * 0.3 + 1;
-          this.element.style.transform = `translate3d(${this.x}px, ${this.y}px, 0) scale(${pulse})`;
-          this.pulsePhase += this.pulseSpeed;
-        }
-
-        update() {
-          if (this.fadeDirection === 'in') {
-            this.opacity += this.fadeSpeed;
-            if (this.opacity >= this.maxOpacity) {
-              this.opacity = this.maxOpacity;
-              this.fadeDirection = 'out';
-            }
-          } else {
-            this.opacity -= this.fadeSpeed;
-            if (this.opacity <= 0) {
-              this.opacity = 0;
-              this.fadeDirection = 'in';
-              this.resetPosition();
-            }
-          }
-          this.updatePosition();
-          this.element.style.opacity = this.opacity.toString();
+          this.element.style.transform = `translate3d(${this.x}px, ${this.y}px, 0)`;
         }
       }
 
-      function initBackgroundDots() {
+      function createDots() {
         const container = document.getElementById('dots-background');
-        const dots = [];
-        let animationFrame = null;
-
-        function createDots() {
-          if (container) {
-            container.innerHTML = '';
-            const numDots = Math.floor(Math.min((window.innerWidth * window.innerHeight) / 20000, 40));
-            for (let i = 0; i < numDots; i++) {
-              dots.push(new Dot(container));
-            }
-            
-            if (!animationFrame) {
-              animationFrame = requestAnimationFrame(animate);
-            }
-          }
-        }
-
-        function animate() {
-          dots.forEach(dot => dot.update());
-          animationFrame = requestAnimationFrame(animate);
-        }
-
-        createDots();
-
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-          if (resizeTimeout) clearTimeout(resizeTimeout);
-          resizeTimeout = setTimeout(createDots, 250);
-        }, { passive: true });
-
-        document.addEventListener('visibilitychange', () => {
-          if (document.hidden) {
-            if (animationFrame) {
-              cancelAnimationFrame(animationFrame);
-              animationFrame = null;
-            }
-          } else {
-            if (!animationFrame) {
-              animationFrame = requestAnimationFrame(animate);
-            }
-          }
-        });
-      }
-
-      function initMobileMenu() {
-        const menuToggle = document.getElementById('menu-toggle');
-        const navLinks = document.getElementById('nav-links');
-
-        if (menuToggle && navLinks) {
-          menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-          });
-
-          const links = navLinks.getElementsByTagName('a');
-          for (let i = 0; i < links.length; i++) {
-            links[i].addEventListener('click', () => {
-              navLinks.classList.remove('active');
-            });
-          }
+        if (!container) return;
+        
+        container.innerHTML = '';
+        const rect = container.getBoundingClientRect();
+        const numDots = Math.floor(Math.min((rect.width * rect.height) / 25000, 30));
+        
+        for (let i = 0; i < numDots; i++) {
+          dots.push(new Dot(
+            container,
+            Math.random() * rect.width,
+            Math.random() * rect.height
+          ));
         }
       }
 
-      function initSectionAnimations() {
-        const sections = document.querySelectorAll('section');
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('section-visible');
-              observer.unobserve(entry.target);
+      function animate() {
+        if (!isAnimating) return;
+        dots.forEach(dot => dot.updatePosition());
+        animationFrame = requestAnimationFrame(animate);
+      }
+
+      function startAnimation() {
+        if (isAnimating) return;
+        isAnimating = true;
+        animationFrame = requestAnimationFrame(animate);
+      }
+
+      function stopAnimation() {
+        isAnimating = false;
+        if (animationFrame) {
+          cancelAnimationFrame(animationFrame);
+          animationFrame = null;
+        }
+      }
+
+      // Initialize only when needed
+      if (document.visibilityState === 'visible') {
+        const dotsContainer = document.getElementById('dots-background');
+        if (dotsContainer) {
+          observer.observe(dotsContainer);
+          createDots();
+          
+          // Handle window resize efficiently
+          let resizeTimeout;
+          window.addEventListener('resize', () => {
+            if (resizeTimeout) clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+              dots.length = 0;
+              createDots();
+            }, 250);
+          }, { passive: true });
+
+          // Stop animation when tab is not visible
+          document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+              stopAnimation();
+            } else {
+              startAnimation();
             }
           });
-        }, {
-          root: null,
-          rootMargin: '0px',
-          threshold: 0.1
-        });
-
-        sections.forEach(section => {
-          section.classList.add('section-animate');
-          observer.observe(section);
-        });
+        }
       }
-
-      document.addEventListener('DOMContentLoaded', () => {
-        initBackgroundDots();
-        initMobileMenu();
-        initSectionAnimations();
-      });
     </script>
   </body>
 </html>

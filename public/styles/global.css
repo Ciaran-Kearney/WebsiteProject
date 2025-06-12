@@ -208,11 +208,15 @@ nav {
   align-items: center;
   text-align: center;
   padding-top: 80px;
+  contain: layout style paint;
+  content-visibility: auto;
 }
 
 .hero-content {
   max-width: 800px;
   margin: 0 auto;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 h1 {
@@ -220,6 +224,8 @@ h1 {
   font-weight: 700;
   margin-bottom: 10px;
   color: var(--heading-color);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 .highlight {
@@ -231,6 +237,7 @@ h1 {
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
   color: var(--text-color);
+  font-display: swap;
 }
 
 .hero .subtitle .highlight {

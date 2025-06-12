@@ -16,8 +16,10 @@ export default defineConfig({
   // Other Astro configuration options
   outDir: './dist',
   build: {
-    assets: 'assets'
+    assets: 'assets',
+    inlineStylesheets: 'auto'
   },
+  
   // Enable TypeScript for better developer experience
   typescript: {
     strict: true
