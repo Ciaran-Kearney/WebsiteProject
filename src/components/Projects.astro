@@ -500,9 +500,27 @@
         const data = projectData[projectId];
 
         modalTitle.textContent = data.title;
-        modalTags.innerHTML = data.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+        
+        // Clear existing tags
+        while (modalTags.firstChild) {
+          modalTags.removeChild(modalTags.firstChild);
+        }
+        
+        // Add new tags safely
+        data.tags.forEach(tag => {
+          const tagSpan = document.createElement('span');
+          tagSpan.className = 'tag';
+          tagSpan.textContent = tag;
+          modalTags.appendChild(tagSpan);
+        });
+        
         modalDescription.textContent = data.description;
-        modalDetails.innerHTML = data.details;
+        
+        // Create details content safely
+        const detailsContainer = document.createElement('div');
+        detailsContainer.innerHTML = data.details; // This is still needed for formatted HTML content
+        modalDetails.innerHTML = ''; // Clear existing content
+        modalDetails.appendChild(detailsContainer);
 
         if (data.image) {
           modalImage.src = data.image;

@@ -10,8 +10,8 @@ export default defineConfig({
   base: '/',
 
   // Live development settings
-  site: 'https://ciarangotskill.com',
-  base: '/',
+  //site: 'https://ciarangotskill.com',
+  //base: '/',
   
   // Other Astro configuration options
   outDir: './dist',

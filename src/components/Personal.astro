@@ -226,11 +226,14 @@
       const iframe = document.createElement('iframe');
       iframe.width = '100%';
       iframe.height = '100%';
-      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+      iframe.src = `https://www.youtube.com/embed/${encodeURIComponent(videoId)}?autoplay=1&rel=0&modestbranding=1`;
       iframe.title = 'El Chorro Blue Line Climb';
-      iframe.frameBorder = '0';
-      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-      iframe.allowFullscreen = true;
+      iframe.setAttribute('frameborder', '0');
+      iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+      iframe.setAttribute('allowfullscreen', '');
+      iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-presentation');
+      iframe.setAttribute('loading', 'lazy');
+      iframe.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
       return iframe;
     }
 
