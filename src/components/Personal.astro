@@ -19,9 +19,20 @@
           <p class="achievement-description">
             Completed the world's highest artificial climbing route — a 165-meter multi-pitch ascent on the iconic Diga di Luzzone dam in Switzerland. The climb required technical proficiency, mental focus, and sustained physical endurance on an intense overhang.
           </p>
-          <div class="media-preview" data-media="/assets/images/placeholder.png" data-type="image">
-            <div class="media-placeholder">
-              <span>Click to view 📸</span>
+          <div class="youtube-facade" data-video-id="kGcaoOHuXu0">
+            <div class="facade-thumbnail">
+              <img 
+                src={`https://i.ytimg.com/vi/kGcaoOHuXu0/hqdefault.jpg`} 
+                alt="Diga di Luzzone Video Thumbnail"
+                loading="lazy"
+                width="480"
+                height="360"
+              />
+              <button class="play-button" aria-label="Play video">
+                <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M8 5v14l11-7z" fill="currentColor"/>
+                </svg>
+              </button>
             </div>
           </div>
         </div>
@@ -169,8 +180,6 @@
     max-width: 800px;
     margin: 2rem auto;
     text-align: center;
-    color: var(--text-muted);
-    font-size: 1.1rem;
     line-height: 1.8;
   }
 

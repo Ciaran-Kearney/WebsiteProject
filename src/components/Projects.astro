@@ -4,8 +4,7 @@
 
 <section id="projects" class="projects-section">
   <div class="container">
-    <h2 class="section-title">Projects</h2>
-    <p class="section-subtitle">Professional Projects</p>
+    <h2 class="section-title">Professional Projects</h2>
     <div class="projects-grid">
       <div class="project-card" data-project="grange">
         <h3>Grange Backup Power Plant</h3>
@@ -20,7 +19,7 @@
 
       <div class="project-card" data-project="bt">
         <h3>BT Ireland Data Centre</h3>
-        <p class="project-description">Environmental Noise Planning Assessment for large-scale data centre in Blanchardstown</p>
+        <p class="project-description">Environmental Noise Planning Assessment for a large-scale data centre in Blanchardstown</p>
         <div class="project-tags">
           <span class="tag">Data Centre</span>
           <span class="tag">Environmental Assessment</span>
@@ -31,7 +30,7 @@
 
       <div class="project-card" data-project="merck">
         <h3>Merck 2.0 Manufacturing</h3>
-        <p class="project-description">Noise Assessment for €150 Million Facility Expansion</p>
+        <p class="project-description">Noise Assessment for a €150 Million Facility Expansion</p>
         <div class="project-tags">
           <span class="tag">Pharmaceutical</span>
           <span class="tag">EPA Compliance</span>
@@ -53,7 +52,7 @@
 
       <div class="project-card" data-project="irishlife">
         <h3>Irish Life Block 3</h3>
-        <p class="project-description">Room Acoustics and Environmental Noise Design for Office Redevelopment</p>
+        <p class="project-description">Room Acoustics and Environmental Noise Design for an Office Redevelopment</p>
         <div class="project-tags">
           <span class="tag">Office Design</span>
           <span class="tag">Room Acoustics</span>
@@ -164,8 +163,6 @@
   }
 
   .project-description {
-    color: var(--text-muted);
-    font-size: 0.95rem;
     line-height: 1.6;
     flex-grow: 1;
   }
@@ -439,7 +436,8 @@
         <p>Successfully designed and demonstrated an automated packaging and inspection workflow.</p>
       `,
       tags: ["Automation", "Vision Systems", "Robotics"],
-      image: `/assets/images/projects/stryker.jpg`
+      image: `/assets/images/projects/stryker.jpg`,
+      video: "https://www.youtube.com/embed/3wk3chdVGFw"
     },
     almac: {
       title: "Almac Syringe Labeller",
@@ -471,7 +469,8 @@
         <p>High-performance line successfully brought into production with full validation compliance.</p>
       `,
       tags: ["Automation", "Vision Inspection", "Manufacturing"],
-      image: `/assets/images/projects/viatris.jpg`
+      image: `/assets/images/projects/viatris.jpg`,
+      video: "https://www.youtube.com/embed/28G7U99cC4c"
     }
   };
 
@@ -522,9 +521,13 @@
         modalDetails.innerHTML = ''; // Clear existing content
         modalDetails.appendChild(detailsContainer);
 
-        if (data.image) {
-          modalImage.src = data.image;
-          modalImage.alt = data.title;
+        const modalMedia = modal.querySelector('.modal-media');
+        if (data.video) {
+          modalMedia.innerHTML = `<iframe width="100%" height="315" src="${data.video}" title="Stryker Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+        } else if (data.image) {
+          modalMedia.innerHTML = `<img class="modal-image" src="${data.image}" alt="${data.title}" />`;
+        } else {
+          modalMedia.innerHTML = '';
         }
 
         modal.classList.add('active');

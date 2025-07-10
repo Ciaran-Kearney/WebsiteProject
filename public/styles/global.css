@@ -522,8 +522,8 @@ section {
   align-items: flex-start;
   background: linear-gradient(
     to right,
-    var(--background) 0%,
-    var(--background) 65%,
+    rgba(20, 40, 70, 0.95) 0%, /* Lighten for more contrast */
+    rgba(20, 40, 70, 0.85) 65%,
     rgba(10, 25, 41, 0.5) 65%
   );
 }
@@ -605,7 +605,7 @@ section {
 }
 
 .work-responsibilities li {
-  color: var(--text-muted);
+  color: #b3c6d4;
   margin-bottom: 0.5rem;
   position: relative;
   padding-left: 1.5rem;
@@ -710,8 +710,8 @@ section {
 }
 
 .skill-item span {
-  color: var(--text-muted);
-  font-size: 0.95rem;
+  color: #b3c6d4;
+  font-size: 1.15rem; /* Increased size for better readability */
   transition: color 0.3s ease;
 }
 
@@ -813,6 +813,10 @@ section {
   flex: 1;
   position: relative;
   z-index: 3;
+}
+
+.certificate-content p {
+  color: #b3c6d4;
 }
 
 .certificate-item:hover {
@@ -1543,4 +1547,107 @@ h3, h4, .tag, .skill-item span {
   opacity: 1;
   padding: 1.5rem;
   border-top: none;
+}
+
+.project-description,
+.personal-intro,
+.achievement-description,
+.skill-item span,
+.certificate-description,
+.timeline-period,
+.work-period,
+.section-subtitle {
+  color: #b3c6d4;
+}
+
+.work-mini-description {
+  color: #b3c6d4;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  padding-left: 1.5rem;
+  position: relative;
+}
+.work-mini-description::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--accent-primary);
+}
+
+.work-period,
+.work-mini-header .work-period {
+  color: #b3c6d4;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 98%;
+    padding: 0 0.5rem;
+  }
+  section {
+    padding: 2rem 0;
+  }
+  .section-title {
+    font-size: 1.3rem;
+    padding: 0 0.5rem;
+  }
+  .projects-grid,
+  .skills-grid,
+  .certificates-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .project-card,
+  .work-card,
+  .about-card,
+  .contact-card,
+  .timeline-content,
+  .skill-category,
+  .certificate-item {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  .work-container,
+  .skills-container {
+    gap: 1rem;
+  }
+  .work-mini-container {
+    grid-template-columns: 1fr;
+  }
+  .modal-content {
+    padding: 1rem;
+    grid-template-columns: 1fr !important;
+  }
+  .modal-media iframe,
+  .modal-media img {
+    max-width: 100vw;
+    height: auto;
+  }
+  .cta-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+  nav {
+    flex-direction: column;
+    padding: 10px 0;
+  }
+  .nav-links {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    padding: 10px 0;
+  }
+  .nav-links li {
+    margin: 10px 0;
+  }
+  .menu-toggle {
+    display: flex;
+  }
+  h1, h2, h3 {
+    font-size: 1.2rem;
+  }
+  p, li, span, a {
+    font-size: 1rem;
+  }
 }
