@@ -1662,10 +1662,16 @@ h3, h4, .tag, .skill-item span {
 }
 
 @media (max-width: 768px) {
-  .hero .subtitle {
-    font-size: 1.2rem !important;
-  }
+  .hero .subtitle,
   .highlight {
-    font-size: 1.2em !important;
+    font-size: 2rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .work-card,
+  .work-mini-card {
+    background: var(--background) !important;
+    border: 1px solid var(--border-subtle) !important;
   }
 }
