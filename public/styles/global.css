@@ -71,7 +71,7 @@ body {
   width: 3px;
   background-color: var(--accent-primary-light);
   margin-left: 2px;
-  animation: blink 1s infinite;
+  animation: blink 1.5s infinite;
 }
 
 .cursor.typing {
@@ -1658,5 +1658,14 @@ h3, h4, .tag, .skill-item span {
   }
   .work-card::before {
     display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero .subtitle {
+    font-size: 1.2rem !important;
+  }
+  .highlight {
+    font-size: 1.2em !important;
   }
 }
