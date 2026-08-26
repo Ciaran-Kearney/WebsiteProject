@@ -1,4 +1,4 @@
-/* Reset and base styles */
+﻿/* Reset and base styles */
 * {
   margin: 0;
   padding: 0;
@@ -1671,7 +1671,53 @@ h3, h4, .tag, .skill-item span {
 @media (max-width: 768px) {
   .work-card,
   .work-mini-card {
-    background: var(--background) !important;
+    background: linear-gradient(
+      to right,
+      rgba(20, 40, 70, 0.95) 0%,
+      rgba(20, 40, 70, 0.85) 65%,
+      rgba(10, 25, 41, 0.5) 65%
+    ) !important;
     border: 1px solid var(--border-subtle) !important;
   }
 }
+
+@media (max-width: 768px) {
+  .work-card {
+    background: var(--background) !important;
+    background-image: none !important;
+  }
+}
+
+.work-mini-card {
+  background: linear-gradient(
+    135deg,
+    rgba(10, 25, 41, 0.85) 0%,
+    rgba(6, 19, 32, 0.8) 100%
+  );
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+
+/* Skill icon placeholders and fixes for mojibake-encoded emoji */
+.skill-icon {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.6rem;
+  color: var(--accent-primary);
+  font-size: 0; /* hide any stray text glyphs */
+}
+
+.about-list .list-marker,
+.about-list-item .list-marker {
+  color: var(--accent-primary);
+  font-size: 1.2rem;
+  line-height: 1;
+  margin-right: 0.75rem;
+}
+
