@@ -1,4 +1,4 @@
----
+﻿---
 // Certificates component
 ---
 
@@ -6,38 +6,45 @@
   <div class="container">
     <h2 class="section-title">Certificates</h2>
     <div class="certificates-grid">
-      <div class="certificate-item">
-        <div class="certificate-content">
-          <h3>In-Sight Vision Suite</h3>
-          <p>Spreadsheet Advanced</p>
+      <div class="cert-grid">
+        <div class="certificate-tile">
+          <div class="tile-icon" aria-hidden="true">🏅</div>
+          <div class="tile-body">
+            <div class="tile-title">In-Sight Vision Suite</div>
+            <div class="tile-sub">Spreadsheet Advanced</div>
+          </div>
         </div>
-      </div>
 
-      <div class="certificate-item">
-        <div class="certificate-content">
-          <h3>Cloud Solutions</h3>
-          <p>Expert Certification</p>
+        <div class="certificate-tile">
+          <div class="tile-icon" aria-hidden="true">☁️</div>
+          <div class="tile-body">
+            <div class="tile-title">Cloud Solutions</div>
+            <div class="tile-sub">Expert Certification</div>
+          </div>
         </div>
-      </div>
 
-      <div class="certificate-item">
-        <div class="certificate-content">
-          <h3>Technical Report Writing</h3>
-          <p>Engineers Ireland</p>
+        <div class="certificate-tile">
+          <div class="tile-icon" aria-hidden="true">📝</div>
+          <div class="tile-body">
+            <div class="tile-title">Technical Report Writing</div>
+            <div class="tile-sub">Engineers Ireland</div>
+          </div>
         </div>
-      </div>
 
-      <div class="certificate-item">
-        <div class="certificate-content">
-          <h3>Safe Pass</h3>
-          <p>Fás Certification</p>
+        <div class="certificate-tile">
+          <div class="tile-icon" aria-hidden="true">✅</div>
+          <div class="tile-body">
+            <div class="tile-title">Safe Pass</div>
+            <div class="tile-sub">Fás Certification</div>
+          </div>
         </div>
-      </div>
 
-      <div class="certificate-item">
-        <div class="certificate-content">
-          <h3>Driver's Licence</h3>
-          <p>Full Irish Licence</p>
+        <div class="certificate-tile">
+          <div class="tile-icon" aria-hidden="true">🚗</div>
+          <div class="tile-body">
+            <div class="tile-title">Driver's Licence</div>
+            <div class="tile-sub">Full Irish Licence</div>
+          </div>
         </div>
       </div>
     </div>
@@ -55,6 +62,35 @@
     gap: 2rem;
     margin-top: 2rem;
   }
+
+  /* Certificates: keep section title consistent with other sections, de-emphasize items */
+  .certificate-item .certificate-content h3 {
+    font-size: 1rem;
+    color: var(--text-bright);
+    opacity: 0.9;
+    margin: 0 0 4px 0;
+  }
+
+  .certificate-item .certificate-content p {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    opacity: 0.85;
+    margin: 0;
+  }
+
+  /* New compact certificate list */
+  .cert-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+  .certificate-tile { display:flex; gap:0.75rem; align-items:center; padding:0.75rem; background: rgba(255,255,255,0.02); border-radius:8px; border:1px solid rgba(255,255,255,0.03); }
+  .tile-icon { width:36px; height:36px; display:flex; align-items:center; justify-content:center; background: rgba(0,180,216,0.06); border-radius:6px; font-size:18px; }
+  .tile-body { display:flex; flex-direction:column; }
+  .tile-title { font-weight:600; color:var(--text-bright); font-size:0.98rem; }
+  .tile-sub { color:var(--text-muted); font-size:0.85rem; }
+
+  /* Reduce overall size and prominence */
+  .certificates-section { padding: 2rem 0; }
+  .certificate-tile { padding: 0.5rem; }
+  .tile-icon { width:28px; height:28px; font-size:14px; }
+  .tile-title { font-size:0.95rem; }
 
   .certificate-card {
     background: rgba(255, 255, 255, 0.03);

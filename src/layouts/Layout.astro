@@ -1,4 +1,4 @@
----
+﻿---
 export interface Props {
   title: string;
   description?: string;
@@ -69,11 +69,13 @@ const { title, description = "Personal portfolio website for Ciarán Kearney, Me
           this.container = container;
           this.x = x;
           this.y = y;
-          this.size = Math.random() * 2 + 2;
-          this.opacity = Math.random() * 0.4 + 0.3;
+          // Slightly larger dots and higher opacity range
+          this.size = Math.random() * 3 + 3;
+          this.opacity = Math.random() * 0.5 + 0.4;
+          // Increase velocity for a more dynamic background
           this.velocity = {
-            x: (Math.random() - 0.5) * 0.2,
-            y: (Math.random() - 0.5) * 0.2
+            x: (Math.random() - 0.5) * 0.8,
+            y: (Math.random() - 0.5) * 0.8
           };
 
           this.element = document.createElement('div');
@@ -110,11 +112,15 @@ const { title, description = "Personal portfolio website for Ciarán Kearney, Me
       function createDots() {
         const container = document.getElementById('dots-background');
         if (!container) return;
-        
+
         container.innerHTML = '';
         const rect = container.getBoundingClientRect();
-        const numDots = Math.floor(Math.min((rect.width * rect.height) / 25000, 30));
-        
+        // Increase density on larger screens, cap reasonable amount
+        const areaBased = (rect.width * rect.height) / 12000; // smaller divisor -> more dots
+        let numDots = Math.floor(Math.min(areaBased, 80));
+        // Limit for small screens to avoid heavy CPU usage
+        if (rect.width < 480) numDots = Math.min(numDots, 40);
+
         for (let i = 0; i < numDots; i++) {
           dots.push(new Dot(
             container,
@@ -174,3 +180,4 @@ const { title, description = "Personal portfolio website for Ciarán Kearney, Me
     </script>
   </body>
 </html>
+

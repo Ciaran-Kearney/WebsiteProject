@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
@@ -11,6 +11,7 @@ import Certificates from '../components/Certificates.astro';
 import Personal from '../components/Personal.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
+import Built from '../components/Built.astro';
 ---
 
 <Layout title="Ciarán Kearney">
@@ -18,13 +19,17 @@ import Footer from '../components/Footer.astro';
   <main>
     <Hero />
     <About />
-    <Education />
     <Work />
     <Projects />
+    <Education />
     <Skills />
     <Certificates />
     <Personal />
     <Contact />
   </main>
-  <Footer />
 </Layout>
+
+<Built />
+
+<Footer />
+

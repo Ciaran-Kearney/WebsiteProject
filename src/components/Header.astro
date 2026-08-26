@@ -1,4 +1,4 @@
----
+﻿---
 // Header component
 ---
 
@@ -152,3 +152,19 @@
     }
   }
 </style>
+
+<script>
+  // Accessible mobile nav toggle
+  (function () {
+    const toggle = document.getElementById('menu-toggle');
+    const nav = document.getElementById('nav-links');
+    if (!toggle || !nav) return;
+
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      nav.classList.toggle('active');
+    });
+  })();
+</script>
+

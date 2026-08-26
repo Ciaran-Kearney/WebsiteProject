@@ -1,10 +1,10 @@
----
+﻿---
 // Personal component
 ---
 
 <section id="personal" class="personal-section">
   <div class="container">
-    <h2 class="section-title">Personal</h2>
+    <h2 class="section-title">Things I've Climbed</h2>
     <p class="personal-intro">
       Beyond the professional realm, I'm an avid rock climber, constantly pushing my limits and seeking new challenges.
       Each climb is a unique puzzle that demands both physical prowess and mental fortitude.
@@ -14,10 +14,11 @@
       <div class="achievement-card" data-project="luzzone">
         <div class="achievement-header">
           <h3>Diga di Luzzone Dam</h3>
+          <button class="view-btn" aria-label="View media">View</button>
         </div>
         <div class="achievement-content">
           <p class="achievement-description">
-            Completed the world's highest artificial climbing route — a 165-meter multi-pitch ascent on the iconic Diga di Luzzone dam in Switzerland. The climb required technical proficiency, mental focus, and sustained physical endurance on an intense overhang.
+            Completed the world's highest artificial climbing route â€” a 165-meter multi-pitch ascent on the iconic Diga di Luzzone dam in Switzerland. The climb required technical proficiency, mental focus, and sustained physical endurance on an intense overhang.
           </p>
           <div class="youtube-facade" data-video-id="kGcaoOHuXu0">
             <div class="facade-thumbnail">
@@ -41,6 +42,7 @@
       <div class="achievement-card" data-project="indoor">
         <div class="achievement-header">
           <h3>Indoor Climbing Achievement</h3>
+          <button class="view-btn" aria-label="View media">View</button>
         </div>
         <div class="achievement-content">
           <p class="achievement-description">
@@ -69,6 +71,7 @@
       <div class="achievement-card" data-project="chorro">
         <div class="achievement-header">
           <h3>El Chorro Blue Line</h3>
+          <button class="view-btn" aria-label="View media">View</button>
         </div>
         <div class="achievement-content">
           <p class="achievement-description">
@@ -237,6 +240,29 @@
     font-size: 1.2rem;
   }
 
+  .view-btn {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.06);
+    color: var(--text-bright);
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .view-btn:hover {
+    background: rgba(255,255,255,0.03);
+    border-color: var(--accent-primary);
+    color: var(--text-bright);
+  }
+
+  .achievement-card.expanded .view-btn { display: none; }
+
   .achievement-content {
     padding: 20px;
     opacity: 0;
@@ -349,3 +375,4 @@
     object-fit: cover;
   }
 </style> 
+

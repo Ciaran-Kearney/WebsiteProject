@@ -1,128 +1,199 @@
----
-// Skills component
+﻿---
+// Redesigned Technical Proficiencies — simplified (no levels or progress bars)
 ---
 
 <section id="skills" class="skills-section">
   <div class="container">
     <h2 class="section-title">Technical Proficiencies</h2>
-    <div class="skills-container">
-      <div class="skill-category">
-        <h3>Automation Skills</h3>
-        <div class="skills-grid">
-          <div class="skill-item">
-            <div class="skill-icon">🔧</div>
-            <span>Sysmac Studio</span>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon">🏭</div>
-            <span>TIA Portal</span>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon">👁️</div>
-            <span>Cognex</span>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon">📊</div>
-            <span>Datalogic</span>
-          </div>
-        </div>
-      </div>
 
-      <div class="skill-category">
-        <h3>CAD Software</h3>
-        <div class="skills-grid">
-          <div class="skill-item">
-            <div class="skill-icon">📐</div>
-            <span>Autodesk</span>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon">✏️</div>
-            <span>Creo Parametric</span>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon">🔍</div>
-            <span>Solidworks</span>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon">💻</div>
-            <span>Onshape</span>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon">🖨️</div>
-            <span>Bambu Studio</span>
-          </div>
-        </div>
-      </div>
+    <div class="skills-cards">
+      <article class="skill-card">
+        <div class="card-header"><h3>Automation & Controls</h3></div>
+        <ul class="skill-list">
+          <li>
+            <div class="skill-meta">
+              <div class="skill-dot" aria-hidden="true"></div>
+              <div class="skill-name">Sysmac Studio</div>
+            </div>
+          </li>
+          <li>
+            <div class="skill-meta">
+              <div class="skill-dot" aria-hidden="true"></div>
+              <div class="skill-name">TIA Portal</div>
+            </div>
+          </li>
+          <li>
+            <div class="skill-meta">
+              <div class="skill-dot" aria-hidden="true"></div>
+              <div class="skill-name">Cognex / Vision</div>
+            </div>
+          </li>
+          <li>
+            <div class="skill-meta">
+              <div class="skill-dot" aria-hidden="true"></div>
+              <div class="skill-name">Datalogic / Scanners</div>
+            </div>
+          </li>
+        </ul>
+      </article>
 
-      <div class="skill-category">
-        <h3>Programming Languages</h3>
-        <div class="skills-grid">
-          <div class="skill-item">
-            <div class="skill-icon">💻</div>
-            <span>C#</span>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon">📊</div>
-            <span>Matlab</span>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon">📈</div>
-            <span>Excel VBA</span>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon">📝</div>
-            <span>LaTeX</span>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon">🏷️</div>
-            <span>ZPL</span>
-          </div>
-        </div>
-      </div>
+      <article class="skill-card">
+        <div class="card-header"><h3>CAD & 3D</h3></div>
+        <ul class="skill-list">
+          <li>
+            <div class="skill-meta">
+              <div class="skill-dot" aria-hidden="true"></div>
+              <div class="skill-name">Autodesk (Inventor / AutoCAD)</div>
+            </div>
+          </li>
+          <li>
+            <div class="skill-meta">
+              <div class="skill-dot" aria-hidden="true"></div>
+              <div class="skill-name">SolidWorks</div>
+            </div>
+          </li>
+          <li>
+            <div class="skill-meta">
+              <div class="skill-dot" aria-hidden="true"></div>
+              <div class="skill-name">Onshape / Cloud CAD</div>
+            </div>
+          </li>
+          <li>
+            <div class="skill-meta">
+              <div class="skill-dot" aria-hidden="true"></div>
+              <div class="skill-name">Bambu Studio / 3D Print</div>
+            </div>
+          </li>
+        </ul>
+      </article>
 
-      <div class="skill-category">
-        <h3>Acoustic Software</h3>
-        <div class="skills-grid">
-          <div class="skill-item">
-            <div class="skill-icon">🔊</div>
-            <span>SoundPlan</span>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon">🎵</div>
-            <span>Odeon</span>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon">📊</div>
-            <span>Noise Tools</span>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon">🏗️</div>
-            <span>Insul</span>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon">⚠️</div>
-            <span>Noise at Work</span>
-          </div>
-        </div>
-      </div>
+      <article class="skill-card">
+        <div class="card-header"><h3>Programming & Scripting</h3></div>
+        <ul class="skill-list">
+          <li>
+            <div class="skill-meta">
+              <div class="skill-dot" aria-hidden="true"></div>
+              <div class="skill-name">C# / .NET</div>
+            </div>
+          </li>
+          <li>
+            <div class="skill-meta">
+              <div class="skill-dot" aria-hidden="true"></div>
+              <div class="skill-name">Matlab / Data Analysis</div>
+            </div>
+          </li>
+          <li>
+            <div class="skill-meta">
+              <div class="skill-dot" aria-hidden="true"></div>
+              <div class="skill-name">Excel VBA</div>
+            </div>
+          </li>
+          <li>
+            <div class="skill-meta">
+              <div class="skill-dot" aria-hidden="true"></div>
+              <div class="skill-name">ZPL / Label Scripting</div>
+            </div>
+          </li>
+        </ul>
+      </article>
 
-      <div class="skill-category">
-        <h3>General Software</h3>
-        <div class="skills-grid">
-          <div class="skill-item">
-            <div class="skill-icon">📊</div>
-            <span>Microsoft Office</span>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon">🎮</div>
-            <span>Unity</span>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon">🎨</div>
-            <span>Blender</span>
-          </div>
-        </div>
-      </div>
+      <article class="skill-card">
+        <div class="card-header"><h3>Acoustics & Analysis</h3></div>
+        <ul class="skill-list">
+          <li>
+            <div class="skill-meta">
+              <div class="skill-dot" aria-hidden="true"></div>
+              <div class="skill-name">SoundPlan / Environmental Modelling</div>
+            </div>
+          </li>
+          <li>
+            <div class="skill-meta">
+              <div class="skill-dot" aria-hidden="true"></div>
+              <div class="skill-name">Odeon / Room Acoustics</div>
+            </div>
+          </li>
+          <li>
+            <div class="skill-meta">
+              <div class="skill-dot" aria-hidden="true"></div>
+              <div class="skill-name">Noise Tools / Insulation</div>
+            </div>
+          </li>
+        </ul>
+      </article>
+
+      <article class="skill-card">
+        <div class="card-header"><h3>General Software & Tools</h3></div>
+        <ul class="skill-list">
+          <li>
+            <div class="skill-meta">
+              <div class="skill-dot" aria-hidden="true"></div>
+              <div class="skill-name">Microsoft Office (Excel, Word)</div>
+            </div>
+          </li>
+          <li>
+            <div class="skill-meta">
+              <div class="skill-dot" aria-hidden="true"></div>
+              <div class="skill-name">Unity / Simulation</div>
+            </div>
+          </li>
+          <li>
+            <div class="skill-meta">
+              <div class="skill-dot" aria-hidden="true"></div>
+              <div class="skill-name">Blender / 3D Tools</div>
+            </div>
+          </li>
+        </ul>
+      </article>
     </div>
   </div>
+
+  <style>
+    .skills-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+
+    .skill-card {
+      background: linear-gradient(180deg, rgba(10,25,41,0.6), rgba(6,19,32,0.55));
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 0; /* header handles padding */
+      box-shadow: 0 6px 18px rgba(2,6,23,0.35);
+      overflow: hidden;
+    }
+
+    /* Subtle header style to match site — left accent bar and muted background */
+    .card-header {
+      padding: 0.65rem 1rem;
+      background: rgba(255,255,255,0.02);
+      color: var(--text-bright);
+      border-left: 6px solid var(--accent-secondary);
+    }
+
+    .card-header h3 {
+      margin: 0;
+      font-size: 1.06rem;
+      font-weight: 700; /* make headers bold */
+      letter-spacing: 0.2px;
+    }
+
+    .skill-list { list-style: none; margin: 0; padding: 0.9rem 1rem; display: grid; gap: 0.5rem; }
+
+    .skill-meta { display:flex; align-items:center; gap:0.8rem; }
+    .skill-dot { width:10px; height:10px; border-radius:50%; background:var(--accent-primary); flex:0 0 10px; box-shadow:0 0 6px rgba(0,160,255,0.10); }
+    .skill-name { font-weight:400; color:var(--text-muted); font-size:0.96rem; }
+
+    @media (min-width: 1100px) {
+      .skills-cards { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .card-header { padding: 0.6rem 0.8rem; }
+      .skill-list { padding: 0.7rem 0.8rem; }
+      .skill-name { font-size:0.95rem; }
+    }
+  </style>
 </section>
+

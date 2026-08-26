@@ -1,0 +1,93 @@
+---
+// "Things I've Built" image scroller component
+---
+
+<section id="built" class="built-section">
+  <div class="container">
+    <h2 class="section-title">Things I've Built</h2>
+    <div class="image-scroller" role="region" aria-label="Things I've Built">
+      <button class="scroller-control left" aria-label="Scroll left">?</button>
+      <div class="scroller-wrap" id="scroller">
+      <div class="scroller-track" id="scroller-track">
+          <!-- project images (single set) -->
+          <img src="/assets/images/projects/grange.webp" alt="Grange Power Plant" loading="lazy">
+          <img src="/assets/images/projects/bt.webp" alt="BT Data Center" loading="lazy">
+          <img src="/assets/images/projects/merck.jpg" alt="Merck" loading="lazy">
+          <img src="/assets/images/projects/dargle.webp" alt="Project Dargle" loading="lazy">
+          <img src="/assets/images/projects/irishlife.jpg" alt="Irish Life" loading="lazy">
+          <img src="/assets/images/projects/esb.jpg" alt="ESB Aghada" loading="lazy">
+          <img src="/assets/images/ProjectEng.jpg" alt="Project Example" loading="lazy">
+      </div>
+      </div>
+      <button class="scroller-control right" aria-label="Scroll right">?</button>
+    </div>
+  </div>
+
+  <style>
+    .image-scroller { display:flex; align-items:center; gap:0.5rem; margin-top: 1rem; }
+    .scroller-wrap { overflow: hidden; flex:1; }
+    .scroller-track { display: flex; gap: 1rem; align-items: center; padding: 0.5rem 0; will-change: transform; }
+    .scroller-track img { height: 120px; width: auto; border-radius: 8px; object-fit: cover; box-shadow: 0 6px 18px rgba(0,0,0,0.4); }
+
+    .scroller-control { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); color: var(--text-bright); padding: 0.4rem 0.6rem; border-radius: 6px; cursor: pointer; }
+    .scroller-control:hover { background: rgba(255,255,255,0.05); }
+
+    @media (max-width: 768px) {
+      .scroller-track img { height: 90px; }
+    }
+
+    <script type="module">
+      const scrollerWrap = document.getElementById('scroller');
+      const track = scrollerWrap.querySelector('.scroller-track');
+      const leftBtn2 = document.querySelector('.scroller-control.left');
+      const rightBtn2 = document.querySelector('.scroller-control.right');
+
+      // Duplicate track content for seamless CSS-free loop
+      const trackId = document.getElementById('scroller-track');
+      const trackContent = trackId.innerHTML;
+      // append a clone of the content
+      trackId.innerHTML = trackContent + trackContent;
+
+      let offset = 0;
+      let lastTime = performance.now();
+      const speed = 40; // pixels per second
+      let paused = false;
+
+      function updateTransform() {
+        track.style.transform = `translateX(${-offset}px)`;
+      }
+
+      function frame(now) {
+        const dt = (now - lastTime) / 1000;
+        lastTime = now;
+        if (!paused) {
+          offset += speed * dt;
+          // when offset exceeds width of first set, wrap
+          const singleWidth = track.scrollWidth / 2;
+          if (offset >= singleWidth) offset -= singleWidth;
+          updateTransform();
+        }
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+
+      // Arrow controls: jump by a portion of visible width
+      leftBtn2.addEventListener('click', () => {
+        const step = scrollerWrap.offsetWidth * 0.6;
+        offset = Math.max(0, offset - step);
+        updateTransform();
+      });
+
+      rightBtn2.addEventListener('click', () => {
+        const step = scrollerWrap.offsetWidth * 0.6;
+        const singleWidth = track.scrollWidth / 2;
+        offset = offset + step;
+        if (offset >= singleWidth) offset -= singleWidth;
+        updateTransform();
+      });
+
+      scrollerWrap.addEventListener('mouseenter', () => { paused = true; });
+      scrollerWrap.addEventListener('mouseleave', () => { paused = false; lastTime = performance.now(); });
+    </script>
+  </style>
+</section>

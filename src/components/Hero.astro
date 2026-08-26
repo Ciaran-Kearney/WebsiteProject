@@ -1,4 +1,4 @@
----
+﻿---
 // Hero component with typing animation
 ---
 
@@ -6,11 +6,17 @@
   <div class="container">
     <div class="hero-content">
       <h1 class="hero-title">Hi, I'm <span class="highlight">Ciarán</span></h1>
-      <p class="subtitle">I am <span id="article">a</span> <span id="typed-text" class="highlight"></span><span class="cursor">&nbsp;</span></p>
+      <p class="subtitle">I am <span id="article" class="highlight">a</span> <span id="typed-text" class="highlight"></span><span class="cursor">&nbsp;</span></p>
       <div class="cta-buttons">
         <a href="#contact" class="btn primary">Contact me</a>
-        <a href="/assets/cv/CiaranKearney_CV.pdf" target="_blank" class="btn secondary">Download CV <span class="download-icon">📄</span></a>
-        <a href="https://www.linkedin.com/in/ciarán-kearney/" target="_blank" class="btn secondary">LinkedIn</a>
+        <a href="/assets/cv/CiaranKearney_CV.pdf" target="_blank" class="btn secondary" rel="noopener noreferrer">Download CV
+          <svg class="icon icon-download" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 3v12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8 11l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M21 21H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/ciaran-kearney/" target="_blank" class="btn secondary" rel="noopener noreferrer">LinkedIn</a>
       </div>
     </div>
   </div>
@@ -170,3 +176,4 @@
     }
   }
 </style>
+
